@@ -2,28 +2,27 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script>
-			function startTime() {
-				var today = new Date();
-				var h = today.getHours();
-				var m = today.getMinutes();
-				var s = today.getSeconds();
-				m = checkTime(m);
-				s = checkTime(s);
-				document.getElementById('txt').innerHTML =
-				h + ":" + m + ":" + s;
-				var t = setTimeout(startTime, 500);
-			}
-			function checkTime(i) {
-				if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-				return i;
-			}
-		</script>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+		<script src="js/main.js"></script>
+		<script src="js/clock.js"></script>
 	</head>
 
 	<body onload="startTime()">
-		<div id="txt"></div>
+		<center>
+			<div class="clock">
+				<div class="numbers">
+					<div id="txt"></div>
+				</div>
+			</div>
+
+			<button id="Clock" class="button">Clock</button>
+			<button id="Timer" class="button">Timer</button>
+			<button id="Stopwatch" class="button">Stopwatch</button>
+
+		</center>
 	</body>
 </html>
-
 
