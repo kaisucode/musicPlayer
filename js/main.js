@@ -1,10 +1,22 @@
 
 // Close electron on 'q'
 document.addEventListener("keypress", function onEvent(event) {
-    if (event.key === "q") {
+	if (event.key === "q") {
 		const remote = require('electron').remote
 		let w = remote.getCurrentWindow()
 		w.close()
+	}
+
+	var start_stop = false;
+    if (event.key === "s") {
+		if (start_stop) {
+			clearInterval(Interval);
+			start_stop = false;
+		} else {
+			clearInterval(Interval);
+			Interval = setInterval(startStopwatch, 10);
+			start_stop = true;
+		}
     }
 });
 
