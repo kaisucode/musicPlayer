@@ -5,34 +5,48 @@
 	color: #00FFF2;		/*blue*/
 }
 
+.timer{
+	margin-bottom: 50px;
 
-input[type=submit]{
+}
+
+.text_time{
+	margin-top: 200px;
+	font-size: 100px;
+	color: #00FFF2;		/*blue*/
+}
+
+.text_stopwatch{
+	margin-top: 200px;
+	/* margin-bottom: 0px; */
+	font-size: 200px;
+	color: #00FFF2;		/*blue*/
+}
+
+input {
 	border-radius: 12px;
     background-color: #00FFF2; 
     color: black;
     border: none;
-	width: 200px;
+	width: 150px;
     padding: 20px;
+    padding-bottom: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+	font-size: 50px;
     margin: 4px 12px;
     cursor: pointer;
 }
 
-input[type=submit]:focus {
-	/* background: pink; */
+input:focus {
 	color: #00FFF2; 
     background-color: black;
 	outline: none;
 }
 
-input[type=submit]:active {
-	background: pink;
-}
 
-
+/* input[type=submit]:focus { */
 
 
 
@@ -53,13 +67,9 @@ input[type=submit]:active {
 }
 
 .button:focus {
-	/* background: pink; */
 	color: #00FFF2; 
     background-color: black;
 	outline: none;
 }
 
-.button:active {
-	background: pink;
-}
 

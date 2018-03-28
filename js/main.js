@@ -9,24 +9,28 @@ document.addEventListener("keypress", function onEvent(event) {
 });
 
 $(document).ready(function() {
+	startTime();
 
-	$('.clock').css('display', 'inline');
+	// $('.clock').css('display', 'inline');
+	$('.clock').css('display', 'none');
+	// $('.timer').css('display', 'inline');
 	$('.timer').css('display', 'none');
-	$('.stopwatch').css('display', 'none');
+	$('.stopwatch').css('display', 'inline');
+	// $('.stopwatch').css('display', 'none');
 	
-	$('#Clock').click(function(){
+	$('#Clock_menu').click(function(){
 		$('.timer').css('display', 'none');
 		$('.clock').css('display', 'inline');
 		$('.stopwatch').css('display', 'none');
 	})
 
-	$('#Timer').click(function(){
+	$('#Timer_menu').click(function(){
 		$('.clock').css('display', 'none');
 		$('.timer').css('display', 'inline');
 		$('.stopwatch').css('display', 'none');
 	})
 
-	$('#Stopwatch').click(function(){
+	$('#Stopwatch_menu').click(function(){
 		$('.clock').css('display', 'none');
 		$('.timer').css('display', 'none');
 		$('.stopwatch').css('display', 'inline');

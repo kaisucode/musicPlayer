@@ -8,9 +8,11 @@
 
 		<script src="js/main.js"></script>
 		<script src="js/clock.js"></script>
+		<script src="js/stopwatch.js"></script>
 	</head>
 
-	<body onload="startTime()">
+	<!-- <body onload="startTime()"> -->
+	<body>
 		<center>
 			<div class="clock">
 				<div class="numbers">
@@ -18,9 +20,28 @@
 				</div>
 			</div>
 
-			<button id="Clock" class="button">Clock</button>
-			<button id="Timer" class="button">Timer</button>
-			<button id="Stopwatch" class="button">Stopwatch</button>
+			<div class="timer">
+				<div class="text_time">
+					<input type="text" name="hour"> hr <input type="text" name="minutes"> min <input type="text" name=seconds> sec
+					<br>
+					<button id="start_timer" class="button">Start Timer</button>
+				</div>
+			</div>
+
+			<div class="stopwatch">
+				<div class="text_stopwatch">
+					<span id="seconds">00</span>:<span id="tens">00</span>
+				</div>
+				<button id="button-start" class="button">Start</button>
+				<button id="button-stop" class="button">Stop</button>
+				<button id="button-reset" class="button">Reset</button>
+			</div>
+
+			<br>
+			<button id="Clock_menu" class="button">Clock</button>
+			<button id="Timer_menu" class="button">Timer</button>
+			<button id="Stopwatch_menu" class="button">Stopwatch</button>
+
 
 		</center>
 	</body>
