@@ -33,12 +33,12 @@ $(document).ready(function() {
 
 	$('#Clock_menu').focus();
 
-	// $('.clock').css('display', 'inline');
-	$('.clock_group').css('display', 'none');
-	// $('.timer').css('display', 'inline');
+	$('.clock_group').css('display', 'inline');
+	// $('.clock_group').css('display', 'none');
+	// $('.timer_group').css('display', 'inline');
 	$('.timer_group').css('display', 'none');
-	$('.stopwatch_group').css('display', 'inline');
-	// $('.stopwatch').css('display', 'none');
+	// $('.stopwatch_group').css('display', 'inline');
+	$('.stopwatch_group').css('display', 'none');
 	
 	$('#Clock_menu').click(function(){
 		$('.timer_group').css('display', 'none');
