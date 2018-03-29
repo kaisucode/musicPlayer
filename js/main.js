@@ -40,23 +40,23 @@ $(document).ready(function() {
 	// $('.stopwatch_group').css('display', 'inline');
 	$('.stopwatch_group').css('display', 'none');
 	
-	$('#Clock_menu').click(function(){
+	$('#Clock_menu').on("focus", function(){
 		$('.timer_group').css('display', 'none');
 		$('.clock_group').css('display', 'inline');
 		$('.stopwatch_group').css('display', 'none');
-	})
+	});
 
-	$('#Timer_menu').click(function(){
+	$('#Timer_menu').on("focus", function(){
 		$('.clock_group').css('display', 'none');
 		$('.timer_group').css('display', 'inline');
 		$('.stopwatch_group').css('display', 'none');
-	})
+	});
 
-	$('#Stopwatch_menu').click(function(){
+	$('#Stopwatch_menu').on("focus", function(){
 		$('.clock_group').css('display', 'none');
 		$('.timer_group').css('display', 'none');
 		$('.stopwatch_group').css('display', 'inline');
-	})
+	});
 
 
 
