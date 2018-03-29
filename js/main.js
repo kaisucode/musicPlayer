@@ -31,6 +31,8 @@ document.addEventListener("keypress", function onEvent(event) {
 $(document).ready(function() {
 	startTime();
 
+	$('#Clock_menu').focus();
+
 	// $('.clock').css('display', 'inline');
 	$('.clock').css('display', 'none');
 	// $('.timer').css('display', 'inline');
@@ -50,10 +52,38 @@ $(document).ready(function() {
 		$('.stopwatch').css('display', 'none');
 	})
 
-	$('#Stopwatch_menu').click(function(){
+	$('#stopwatch_menu').click(function(){
 		$('.clock').css('display', 'none');
 		$('.timer').css('display', 'none');
 		$('.stopwatch').css('display', 'inline');
 	})
+
+
+
+	$('[role="menu"] button').keydown(function(e){
+		var myIndex = $(this).parent().index();
+		var mySibling = $(this).parents('[role="menu"]').children();
+		var first = mySibling[0];
+		var last = mySibling.get(-1);
+		if (e.which === 37 || e.keyCode === 37){
+			e.preventDefault();
+			var prev = mySibling[myIndex - 1];
+			if(prev){
+				$(prev).children('button').focus();
+			}else {
+				$(last).children('button').focus();
+			}
+		}
+		if (e.which === 39 || e.keyCode === 39){
+			e.preventDefault();
+			var next = mySibling[myIndex + 1];
+			if(next){
+				$(next).children('button').focus();
+			}else {
+				$(first).children('button').focus();
+			}
+		}
+	});
+
 });
 
