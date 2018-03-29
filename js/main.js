@@ -34,28 +34,28 @@ $(document).ready(function() {
 	$('#Clock_menu').focus();
 
 	// $('.clock').css('display', 'inline');
-	$('.clock').css('display', 'none');
+	$('.clock_group').css('display', 'none');
 	// $('.timer').css('display', 'inline');
-	$('.timer').css('display', 'none');
-	$('.stopwatch').css('display', 'inline');
+	$('.timer_group').css('display', 'none');
+	$('.stopwatch_group').css('display', 'inline');
 	// $('.stopwatch').css('display', 'none');
 	
 	$('#Clock_menu').click(function(){
-		$('.timer').css('display', 'none');
-		$('.clock').css('display', 'inline');
-		$('.stopwatch').css('display', 'none');
+		$('.timer_group').css('display', 'none');
+		$('.clock_group').css('display', 'inline');
+		$('.stopwatch_group').css('display', 'none');
 	})
 
 	$('#Timer_menu').click(function(){
-		$('.clock').css('display', 'none');
-		$('.timer').css('display', 'inline');
-		$('.stopwatch').css('display', 'none');
+		$('.clock_group').css('display', 'none');
+		$('.timer_group').css('display', 'inline');
+		$('.stopwatch_group').css('display', 'none');
 	})
 
 	$('#Stopwatch_menu').click(function(){
-		$('.clock').css('display', 'none');
-		$('.timer').css('display', 'none');
-		$('.stopwatch').css('display', 'inline');
+		$('.clock_group').css('display', 'none');
+		$('.timer_group').css('display', 'none');
+		$('.stopwatch_group').css('display', 'inline');
 	})
 
 

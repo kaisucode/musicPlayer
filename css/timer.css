@@ -1,0 +1,33 @@
+
+input {
+	border-radius: 12px;
+    background-color: #00FFF2; 
+    color: black;
+    border: none;
+	width: 150px;
+    padding: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+	font-size: 50px;
+    margin: 4px 12px;
+    cursor: pointer;
+}
+
+input:focus {
+	color: #00FFF2; 
+	background-color: black;
+	outline: none;
+}
+
+.timer{
+	margin-bottom: 50px;
+}
+
+.timer_style{
+	margin-top: 200px;
+	font-size: 100px;
+	color: #00FFF2;		/*blue*/
+}
+

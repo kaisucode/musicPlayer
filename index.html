@@ -3,6 +3,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/timer.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
@@ -14,21 +15,21 @@
 	<!-- <body onload="startTime()"> -->
 	<body>
 		<center>
-			<div class="clock">
-				<div class="numbers">
+			<div class="clock_group">
+				<div class="clock_style">
 					<div id="txt"></div>
 				</div>
 			</div>
 
-			<div class="timer">
-				<div class="text_time">
+			<div class="timer_group">
+				<div class="timer_style">
 					<input type="text" name="hour"> hr <input type="text" name="minutes"> min <input type="text" name=seconds> sec
 					<br>
 					<button id="start_timer" class="button">Start Timer</button>
 				</div>
 			</div>
 
-			<div class="stopwatch">
+			<div class="stopwatch_group">
 				<div class="text_stopwatch">
 					<span id="seconds">00</span>:<span id="tens">00</span>
 				</div>
