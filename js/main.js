@@ -52,7 +52,7 @@ $(document).ready(function() {
 		$('.stopwatch').css('display', 'none');
 	})
 
-	$('#stopwatch_menu').click(function(){
+	$('#Stopwatch_menu').click(function(){
 		$('.clock').css('display', 'none');
 		$('.timer').css('display', 'none');
 		$('.stopwatch').css('display', 'inline');

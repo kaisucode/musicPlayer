@@ -1,4 +1,9 @@
 
+
+[role=menu] li{
+	display: inline;
+}
+
 .numbers {
 	margin-top: 230px;
 	font-size: 200px;
