@@ -1,7 +1,14 @@
 
+img {
+    opacity: 0.5;
+}
 
 [role=menu] li{
 	display: inline;
+}
+
+.clock_style #current_date{
+	font-size: 70px;
 }
 
 .clock_style {
