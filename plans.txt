@@ -3,13 +3,16 @@ Timer
 Add date to clock
 
 GIFS
-	-Jarvis
 	-Stich
+	-Jarvis
 	-D.Va
 	-Programaming stickman
+	-Pokemon
+	-Spinning avatar
 
 Shortcut links
 Class schedule
 Slideshows
 Volume indicator/Music player
+Email notifier
 
