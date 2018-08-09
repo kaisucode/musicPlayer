@@ -1,95 +1,168 @@
 
-var focus_menu = 0;
-// [clock, timer, stopwatch]
+var focusPage = {
+	"clock": true, 
+	"timer": false,
+	"stopwatch": false
+};
 
-document.addEventListener("keypress", function onEvent(event) {
-	// Close electron on 'q'
-	if (event.key === "q") {
-		const remote = require('electron').remote
-		let w = remote.getCurrentWindow()
-		w.close()
-	} else if (event.key === "s" && focus == 2) {
-		if (start_stop) {
-			clearInterval(Interval);
-			start_stop = false;
-			$('#button-startstop').text('Start');
+var Interval;
+var stopwatchRunning;
+var seconds;
+var tens;
+var appendTens;
+var appendSeconds;
 
-		} else {
-			clearInterval(Interval);
-			Interval = setInterval(startStopwatch, 10);
-			start_stop = true;
-			$('#button-startstop').text('Stop');
+
+$(document).ready(function() {
+	tens = 00; 
+	seconds = 00; 
+	minutes = 00;
+	hours = 00;
+	appendTens = document.getElementById("tens")
+	appendSeconds = document.getElementById("seconds")
+	appendMinutes = document.getElementById("minutes")
+	appendHours = document.getElementById("hours")
+	stopwatchRunning = false;
+
+	startTime();
+	refreshClockApp();
+
+	document.addEventListener("keydown", function onEvent(event) {
+		if (event.key === "q") 
+			require('electron').remote.getCurrentWindow().close();
+		else if (event.key === "s" && focusPage["stopwatch"]) 
+			toggleStopwatch();
+		else if (event.key === "c" && focusPage["stopwatch"])
+			clearStopwatch();
+		else if (event.which === 37)	// Left
+			moveClockAppLeft();
+		else if (event.which === 39)	//Right arrow
+			moveClockAppRight();
+	});
+
+	function startTime() {
+		var today = new Date();
+		var h = today.getHours();
+		var m = today.getMinutes();
+		var s = today.getSeconds();
+		m = checkTime(m);
+		s = checkTime(s);
+		document.getElementById('current_time').innerHTML =
+		h + ":" + m + ":" + s;
+
+		var year = today.getYear()-100+2000;
+		var month = today.getMonth()+1;
+		var date = today.getDate();
+		// var day = today.getDay();
+		document.getElementById('current_date').innerHTML =
+		year + "/" + month + "/" + date;
+
+		var t = setTimeout(startTime, 500);
+
+		function checkTime(i) {
+			return ( i<10 ? "0"+i : i );
 		}
-	} else if (event.key === "c" && focus == 2){
+	}
+	function refreshClockApp() {
+		if (focusPage["clock"]){
+			$('.clock_group').css('display', 'inline');
+			$('.timer_group').css('display', 'none');
+			$('.stopwatch_group').css('display', 'none');
+		}
+		else if (focusPage["timer"]){
+			$('.clock_group').css('display', 'none');
+			$('.timer_group').css('display', 'inline');
+			$('.stopwatch_group').css('display', 'none');
+		}
+		else if (focusPage["stopwatch"]){
+			$('.clock_group').css('display', 'none');
+			$('.timer_group').css('display', 'none');
+			$('.stopwatch_group').css('display', 'inline');
+		}
+	}
+	function moveClockAppRight() {
+		if (focusPage["clock"]){
+			focusPage["clock"] = false;
+			focusPage["timer"] = true;
+		}
+		else if (focusPage["timer"]){
+			focusPage["timer"] = false;
+			focusPage["stopwatch"] = true;
+		}
+		else if (focusPage["stopwatch"]){
+			focusPage["stopwatch"] = false;
+			focusPage["clock"] = true;
+		}
+		refreshClockApp();
+	}
+	function moveClockAppLeft() {
+		if (focusPage["clock"]){
+			focusPage["clock"] = false;
+			focusPage["stopwatch"] = true;
+		}
+		else if (focusPage["timer"]){
+			focusPage["timer"] = false;
+			focusPage["clock"] = true;
+		}
+		else if (focusPage["stopwatch"]){
+			focusPage["stopwatch"] = false;
+			focusPage["timer"] = true;
+		}
+		refreshClockApp();
+	}
+	function toggleStopwatch(){
+		clearInterval(Interval);
+		if (stopwatchRunning) 
+			stopwatchRunning = false;
+		else {
+			Interval = setInterval(startStopwatch, 10);
+			stopwatchRunning = true;
+		}
+	}
+	function startStopwatch () {
+		tens++; 
+		
+		if(tens < 9)
+			appendTens.innerHTML = "0" + tens;
+		else if (tens > 99) {
+			console.log("seconds");
+			seconds++;
+			appendSeconds.innerHTML = "0" + seconds;
+			tens = 0;
+			appendTens.innerHTML = "0" + 0;
+		} 
+		else if (tens > 9)
+			appendTens.innerHTML = tens;
+		
+		if (seconds > 59){
+			minutes++;
+			appendMinutes.innerHTML = "0" + minutes;
+			seconds = 0;
+			appendSeconds.innerHTML = "0" + 0;
+		}
+		else if (seconds > 9)
+			appendSeconds.innerHTML = seconds;
+
+		if (minutes > 59){
+			hours++;
+			appendHours.innerHTML = "0" + hours;
+			minutes = 0;
+			appendMinutes.innerHTML = "0" + 0;
+		}
+		else if (minutes > 9)
+			appendMinutes.innerHTML = minutes;
+
+		if (hours > 9)
+			appendHours.innerHTML = hours;
+	}
+	function clearStopwatch(){
 		clearInterval(Interval);
 		appendTens.innerHTML = "00";
 		appendSeconds.innerHTML = "00";
 		appendMinutes.innerHTML = "00";
 		appendHours.innerHTML = "00";
-		start_stop = false;
-		$('#button-startstop').text('Start');
+		stopwatchRunning = false;
 	}
-});
-
-$(document).ready(function() {
-	startTime();
-
-	$('#Clock_menu').focus();
-
-	$('.clock_group').css('display', 'inline');
-	// $('.clock_group').css('display', 'none');
-	// $('.timer_group').css('display', 'inline');
-	$('.timer_group').css('display', 'none');
-	// $('.stopwatch_group').css('display', 'inline');
-	$('.stopwatch_group').css('display', 'none');
-	
-	$('#Clock_menu').on("focus", function(){
-		$('.timer_group').css('display', 'none');
-		$('.clock_group').css('display', 'inline');
-		$('.stopwatch_group').css('display', 'none');
-		focus = 0;
-	});
-
-	$('#Timer_menu').on("focus", function(){
-		$('.clock_group').css('display', 'none');
-		$('.timer_group').css('display', 'inline');
-		$('.stopwatch_group').css('display', 'none');
-		focus = 1;
-	});
-
-	$('#Stopwatch_menu').on("focus", function(){
-		$('.clock_group').css('display', 'none');
-		$('.timer_group').css('display', 'none');
-		$('.stopwatch_group').css('display', 'inline');
-		focus = 2;
-	});
-
-
-
-	$('.menu button').keydown(function(e){
-		var myIndex = $(this).parent().index();
-		var mySibling = $(this).parents('.menu').children();
-		var first = mySibling[0];
-		var last = mySibling.get(-1);
-		if (e.which === 37 || e.keyCode === 37){
-			e.preventDefault();
-			var prev = mySibling[myIndex - 1];
-			if(prev){
-				$(prev).children('button').focus();
-			}else {
-				$(last).children('button').focus();
-			}
-		}
-		if (e.which === 39 || e.keyCode === 39){
-			e.preventDefault();
-			var next = mySibling[myIndex + 1];
-			if(next){
-				$(next).children('button').focus();
-			}else {
-				$(first).children('button').focus();
-			}
-		}
-	});
 
 });
 
