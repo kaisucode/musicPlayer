@@ -1,23 +1,26 @@
 
+var focus_menu = 0;
+// [clock, timer, stopwatch]
+
 document.addEventListener("keypress", function onEvent(event) {
 	// Close electron on 'q'
 	if (event.key === "q") {
 		const remote = require('electron').remote
 		let w = remote.getCurrentWindow()
 		w.close()
-	} else if (event.key === "s") {
-			if (start_stop) {
-				clearInterval(Interval);
-				start_stop = false;
-				$('#button-startstop').text('Start');
+	} else if (event.key === "s" && focus == 2) {
+		if (start_stop) {
+			clearInterval(Interval);
+			start_stop = false;
+			$('#button-startstop').text('Start');
 
-			} else {
-				clearInterval(Interval);
-				Interval = setInterval(startStopwatch, 10);
-				start_stop = true;
-				$('#button-startstop').text('Stop');
-			}
-	} else if (event.key === "c"){
+		} else {
+			clearInterval(Interval);
+			Interval = setInterval(startStopwatch, 10);
+			start_stop = true;
+			$('#button-startstop').text('Stop');
+		}
+	} else if (event.key === "c" && focus == 2){
 		clearInterval(Interval);
 		tens = "00";
 		seconds = "00";
@@ -44,18 +47,21 @@ $(document).ready(function() {
 		$('.timer_group').css('display', 'none');
 		$('.clock_group').css('display', 'inline');
 		$('.stopwatch_group').css('display', 'none');
+		focus = 0;
 	});
 
 	$('#Timer_menu').on("focus", function(){
 		$('.clock_group').css('display', 'none');
 		$('.timer_group').css('display', 'inline');
 		$('.stopwatch_group').css('display', 'none');
+		focus = 1;
 	});
 
 	$('#Stopwatch_menu').on("focus", function(){
 		$('.clock_group').css('display', 'none');
 		$('.timer_group').css('display', 'none');
 		$('.stopwatch_group').css('display', 'inline');
+		focus = 2;
 	});
 
 

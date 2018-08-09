@@ -8,8 +8,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1", 
-	"start": "electron --disable-gpu --enable-transparent-visuals ."
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron --disable-gpu --enable-transparent-visuals ."
   },
   "author": "",
   "license": "ISC"

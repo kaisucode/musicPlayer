@@ -1,6 +1,13 @@
 
+
+Fix bug of stopwatch clear not clearing minutes
+
 Timer
 Add date to clock
+Add alarm
+
+Calandar
+https://codepen.io/odran037/pen/RrjjOr
 
 GIFS
 	-Stich
@@ -8,11 +15,64 @@ GIFS
 	-D.Va
 	-Programaming stickman
 	-Pokemon
-	-Spinning avatar
+	-Spinning 3D shadowsinger avatar
 
-Shortcut links
+
 Class schedule
-Slideshows
-Volume indicator/Music player
-Email notifier
+Todo list slideshow
+Fandom slideshow
+
+Shortcuts
+	Bookmarks
+	HW
+
+Volume indicator/Music player/Music equalizer
+
+
+
+
+
+
+
+Rainbow of velaris (<m>)
+	<f> <d> <space> 
+	<1~10> <;> <:> <+> <->
+
+Class schedule (<s>)
+
+Calandar (<c>)
+
+Time (<T>)
+	-Timer
+	-Stopwatch
+	-Alarm
+
+Shortcuts (<,>)
+	-Bookmarks
+	-Downloads
+	-Projects
+
+Todo list slideshow (<t>)
+
+
+
+
+Order to code in
+	Rainbow of velaris
+	Time
+	Shortcuts
+
+	Todolist slideshow
+	Fandom slideshow
+	Class schedule/calandar
+
+
+
+
+
+
+
+
+
+https://www.w3schools.com/howto/howto_js_countdown.asp
 
