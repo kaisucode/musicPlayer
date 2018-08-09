@@ -7,12 +7,12 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
-		<script src="js/stopwatch.js"></script>
 		<script src="js/main.js"></script>
 	</head>
 
 	<body>
-		<center>
+		<div class="clockApp">
+				
 			<div class="clock_group">
 				<div class="clock_style">
 					<div id="current_date"></div>
@@ -25,7 +25,7 @@
 					<p id="timer_countdown"></p>
 					<!-- <input type="text" name="hour"> hr <input type="text" name="minutes"> min <input type="text" name=seconds> sec -->
 					<!-- <br> -->
-					<button id="start_timer" class="button">Start Timer</button>
+					<button id="start_timer" class="clockAppButton">Start Timer</button>
 				</div>
 			</div>
 
@@ -35,15 +35,13 @@
 				</div>
 			</div>
 
-			<br>
-
 			<ul class="menu">
-				<li><button id="Clock_menu" class="button">Clock</button></li>
-				<li><button id="Timer_menu" class="button">Timer</button></li>
-				<li><button id="Stopwatch_menu" class="button">Stopwatch</button></li>
+				<li><button id="Clock_menu" class="clockAppButton">Clock</button></li>
+				<li><button id="Timer_menu" class="clockAppButton">Timer</button></li>
+				<li><button id="Stopwatch_menu" class="clockAppButton">Stopwatch</button></li>
 			</ul>
 
-		</center>
+		</div>
 	</body>
 </html>
 

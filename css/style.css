@@ -3,24 +3,29 @@
 	background-color: black;
 }
 
-.menu {
+.clockApp{
+	text-align: center;
+}
+
+
+.clockApp ul{
 	position: absolute;
 	left: 50vh;;
 	top: 70vh;
 }
 
-.menu li{
+.clockApp li{
 	display: inline;
-}
-
-.clock_style #current_date{
-	font-size: 70px;
 }
 
 .clock_style {
 	margin-top: 230px;
 	font-size: 200px;
 	color: #00FFF2;
+}
+
+.clock_style #current_date{
+	font-size: 70px;
 }
 
 .text_stopwatch{
@@ -30,7 +35,7 @@
 }
 
 
-.button {
+.clockAppButton {
 	border-radius: 12px;
 	background-color: #00FFF2; 
 	color: black;
@@ -45,7 +50,7 @@
 	cursor: pointer;
 }
 
-.button:focus {
+.clockAppButtonSelected {
 	color: #00FFF2; 
 	background-color: black;
 	outline: none;

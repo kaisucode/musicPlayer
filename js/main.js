@@ -1,28 +1,21 @@
 
-var focusPage = {
-	"clock": true, 
-	"timer": false,
-	"stopwatch": false
-};
-
-var Interval;
-var stopwatchRunning;
-var seconds;
-var tens;
-var appendTens;
-var appendSeconds;
-
-
 $(document).ready(function() {
-	tens = 00; 
-	seconds = 00; 
-	minutes = 00;
-	hours = 00;
-	appendTens = document.getElementById("tens")
-	appendSeconds = document.getElementById("seconds")
-	appendMinutes = document.getElementById("minutes")
-	appendHours = document.getElementById("hours")
-	stopwatchRunning = false;
+	var focusPage = {
+		"clock": true, 
+		"timer": false,
+		"stopwatch": false
+	};
+	$("#Clock_menu").addClass("clockAppButtonSelected");
+	var Interval;
+	var tens = 00; 
+	var seconds = 00; 
+	var minutes = 00;
+	var hours = 00;
+	var appendTens = document.getElementById("tens")
+	var appendSeconds = document.getElementById("seconds")
+	var appendMinutes = document.getElementById("minutes")
+	var appendHours = document.getElementById("hours")
+	var stopwatchRunning = false;
 
 	startTime();
 	refreshClockApp();
@@ -84,14 +77,20 @@ $(document).ready(function() {
 		if (focusPage["clock"]){
 			focusPage["clock"] = false;
 			focusPage["timer"] = true;
+			$("#Clock_menu").removeClass("clockAppButtonSelected");
+			$("#Timer_menu").addClass("clockAppButtonSelected");
 		}
 		else if (focusPage["timer"]){
 			focusPage["timer"] = false;
 			focusPage["stopwatch"] = true;
+			$("#Timer_menu").removeClass("clockAppButtonSelected");
+			$("#Stopwatch_menu").addClass("clockAppButtonSelected");
 		}
 		else if (focusPage["stopwatch"]){
 			focusPage["stopwatch"] = false;
 			focusPage["clock"] = true;
+			$("#Stopwatch_menu").removeClass("clockAppButtonSelected");
+			$("#Clock_menu").addClass("clockAppButtonSelected");
 		}
 		refreshClockApp();
 	}
@@ -99,14 +98,20 @@ $(document).ready(function() {
 		if (focusPage["clock"]){
 			focusPage["clock"] = false;
 			focusPage["stopwatch"] = true;
+			$("#Clock_menu").removeClass("clockAppButtonSelected");
+			$("#Stopwatch_menu").addClass("clockAppButtonSelected");
 		}
 		else if (focusPage["timer"]){
 			focusPage["timer"] = false;
 			focusPage["clock"] = true;
+			$("#Timer_menu").removeClass("clockAppButtonSelected");
+			$("#Clock_menu").addClass("clockAppButtonSelected");
 		}
 		else if (focusPage["stopwatch"]){
 			focusPage["stopwatch"] = false;
 			focusPage["timer"] = true;
+			$("#Stopwatch_menu").removeClass("clockAppButtonSelected");
+			$("#Timer_menu").addClass("clockAppButtonSelected");
 		}
 		refreshClockApp();
 	}
