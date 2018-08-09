@@ -1,9 +1,15 @@
 
-img {
-    opacity: 0.5;
+*{
+	background-color: black;
 }
 
-[role=menu] li{
+.menu {
+	position: absolute;
+	left: 50vh;;
+	top: 70vh;
+}
+
+.menu li{
 	display: inline;
 }
 
@@ -14,35 +20,34 @@ img {
 .clock_style {
 	margin-top: 230px;
 	font-size: 200px;
-	color: #00FFF2;		/*blue*/
+	color: #00FFF2;
 }
 
 .text_stopwatch{
 	margin-top: 240px;
-	/* margin-bottom: 0px; */
 	font-size: 135px;
-	color: #00FFF2;		/*blue*/
+	color: #00FFF2;
 }
 
 
 .button {
 	border-radius: 12px;
-    background-color: #00FFF2; 
-    color: black;
-    border: none;
+	background-color: #00FFF2; 
+	color: black;
+	border: none;
 	width: 200px;
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 12px;
-    cursor: pointer;
+	padding: 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 12px;
+	cursor: pointer;
 }
 
 .button:focus {
 	color: #00FFF2; 
-    background-color: black;
+	background-color: black;
 	outline: none;
 }
 

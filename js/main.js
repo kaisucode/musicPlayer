@@ -22,10 +22,10 @@ document.addEventListener("keypress", function onEvent(event) {
 		}
 	} else if (event.key === "c" && focus == 2){
 		clearInterval(Interval);
-		tens = "00";
-		seconds = "00";
-		appendTens.innerHTML = tens;
-		appendSeconds.innerHTML = seconds;
+		appendTens.innerHTML = "00";
+		appendSeconds.innerHTML = "00";
+		appendMinutes.innerHTML = "00";
+		appendHours.innerHTML = "00";
 		start_stop = false;
 		$('#button-startstop').text('Start');
 	}
@@ -66,9 +66,9 @@ $(document).ready(function() {
 
 
 
-	$('[role="menu"] button').keydown(function(e){
+	$('.menu button').keydown(function(e){
 		var myIndex = $(this).parent().index();
-		var mySibling = $(this).parents('[role="menu"]').children();
+		var mySibling = $(this).parents('.menu').children();
 		var first = mySibling[0];
 		var last = mySibling.get(-1);
 		if (e.which === 37 || e.keyCode === 37){
