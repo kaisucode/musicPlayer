@@ -16,32 +16,25 @@
 	<body>
 		<div class="clockApp">
 				
-			<div class="clock_group">
-				<div class="clock_style">
-					<div id="current_date"></div>
-					<div id="current_time"></div>
-				</div>
+			<div class="clockGroup">
+				<div id="current_date"></div>
+				<div id="current_time"></div>
 			</div>
 
-			<div class="timer_group">
-				<div class="timer_style">
-					<p id="timer_countdown"></p>
-					<!-- <input type="text" name="hour"> hr <input type="text" name="minutes"> min <input type="text" name=seconds> sec -->
-					<!-- <br> -->
-					<button id="start_timer" class="clockAppButton">Start Timer</button>
-				</div>
+			<div class="timerGroup">
+				<p id="timer_countdown"></p>
+				<!-- <input type="text" name="hour"> hr <input type="text" name="minutes"> min <input type="text" name=seconds> sec -->
+				<button id="start_timer" class="clockAppButton">Start Timer</button>
 			</div>
 
-			<div class="stopwatch_group">
-				<div class="text_stopwatch">
-					<span id="hours">00</span> hr <span id="minutes">00</span> min <span id="seconds">00</span>.<span id="tens">00</span> sec
-				</div>
+			<div class="stopwatchGroup">
+				<span id="hours">00</span> hr <span id="minutes">00</span> min <span id="seconds">00</span>.<span id="tens">00</span> sec
 			</div>
 
 			<ul class="menu">
-				<li><button id="Clock_menu" class="clockAppButton">Clock</button></li>
-				<li><button id="Timer_menu" class="clockAppButton">Timer</button></li>
-				<li><button id="Stopwatch_menu" class="clockAppButton">Stopwatch</button></li>
+				<li><button id="clockButton">Clock</button></li>
+				<li><button id="timerButton">Timer</button></li>
+				<li><button id="stopwatchButon">Stopwatch</button></li>
 			</ul>
 
 		</div>

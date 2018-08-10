@@ -7,35 +7,34 @@
 	text-align: center;
 }
 
-
-.clockApp ul{
+.clockApp .menu{
 	position: absolute;
 	left: 50vh;;
 	top: 70vh;
 }
 
-.clockApp li{
+.clockApp .menu li{
 	display: inline;
 }
 
-.clock_style {
+.clockGroup {
 	margin-top: 230px;
 	font-size: 200px;
 	color: #00FFF2;
 }
 
-.clock_style #current_date{
+.clockGroup #current_date{
 	font-size: 70px;
 }
 
-.text_stopwatch{
+.stopwatchGroup{
 	margin-top: 240px;
 	font-size: 135px;
 	color: #00FFF2;
 }
 
 
-.clockAppButton {
+.clockApp .menu button {
 	border-radius: 12px;
 	background-color: #00FFF2; 
 	color: black;
@@ -51,9 +50,9 @@
 }
 
 .clockAppButtonSelected {
-	color: #00FFF2; 
-	background-color: black;
-	outline: none;
+	color: #00FFF2 !important; 
+	background-color: black !important;
+	outline: none !important;
 }
 
 
