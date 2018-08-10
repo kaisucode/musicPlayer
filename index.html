@@ -4,8 +4,11 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/timer.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+		<!-- Making imports available for Electron  -->
+		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+		<script src="node_modules/jquery/dist/jquery.min.js"></script>
+		<script>if (window.module) module = window.module;</script>
 
 		<script src="js/main.js"></script>
 	</head>
