@@ -1,11 +1,9 @@
 
+inApp = {
+	"time": false
+};
+
 $(document).ready(function() {
-	var focusPage = {
-		"clock": true, 
-		"timer": false,
-		"stopwatch": false
-	};
-	$("#clockButton").addClass("clockAppButtonSelected");
 	var Interval;
 	var tens = 00; 
 	var seconds = 00; 
@@ -16,21 +14,39 @@ $(document).ready(function() {
 	var appendMinutes = document.getElementById("minutes")
 	var appendHours = document.getElementById("hours")
 	var stopwatchRunning = false;
+	var focusPage = {
+		"clock": true, 
+		"timer": false,
+		"stopwatch": false
+	};
 
+	// $('.clockGroup').css('display', 'block');
+	// $('.clockGroup').css('display', 'none');
+	// $('.timerGroup').css('display', 'block');
+	// $('.stopwatchGroup').css('display', 'block');
+	$('.clockApp .menu').css('display', 'none');
 	startTime();
-	refreshClockApp();
 
 	document.addEventListener("keydown", function onEvent(event) {
 		if (event.key === "q") 
 			require('electron').remote.getCurrentWindow().close();
-		else if (event.key === "s" && focusPage["stopwatch"]) 
-			toggleStopwatch();
-		else if (event.key === "c" && focusPage["stopwatch"])
-			clearStopwatch();
-		else if (event.which === 37)	// Left
-			moveClockAppLeft();
-		else if (event.which === 39)	//Right arrow
-			moveClockAppRight();
+		else if (event.key === "T"){
+			console.log("T pressed");
+			$('.clockApp .menu').css('display', 'block');
+			inApp["time"] = true;
+			$("#clockButton").addClass("clockAppButtonSelected");
+			refreshClockApp();
+		}
+		else if (inApp["time"]){
+			if (event.key === "s" && focusPage["stopwatch"]) 
+				toggleStopwatch();
+			else if (event.key === "c" && focusPage["stopwatch"])
+				clearStopwatch();
+			else if (event.which === 37)	// Left
+				moveClockAppLeft();
+			else if (event.which === 39)	//Right arrow
+				moveClockAppRight();
+		}
 	});
 
 	function startTime() {
