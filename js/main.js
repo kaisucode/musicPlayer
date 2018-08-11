@@ -19,22 +19,20 @@ $(document).ready(function() {
 		"timer": false,
 		"stopwatch": false
 	};
+	$("#clockButton").addClass("clockAppButtonSelected");
 
-	// $('.clockGroup').css('display', 'block');
-	// $('.clockGroup').css('display', 'none');
-	// $('.timerGroup').css('display', 'block');
-	// $('.stopwatchGroup').css('display', 'block');
-	$('.clockApp .menu').css('display', 'none');
 	startTime();
 
 	document.addEventListener("keydown", function onEvent(event) {
-		if (event.key === "q") 
-			require('electron').remote.getCurrentWindow().close();
+		if (event.key === "q") {
+			inApp["time"] = false;
+			$("#clockApp").removeClass("clockAppS");
+			$("#clockApp").addClass("clockApp");
+		}
 		else if (event.key === "T"){
-			console.log("T pressed");
-			$('.clockApp .menu').css('display', 'block');
 			inApp["time"] = true;
-			$("#clockButton").addClass("clockAppButtonSelected");
+			$("#clockApp").removeClass("clockApp");
+			$("#clockApp").addClass("clockAppS");
 			refreshClockApp();
 		}
 		else if (inApp["time"]){
@@ -74,19 +72,19 @@ $(document).ready(function() {
 	}
 	function refreshClockApp() {
 		if (focusPage["clock"]){
-			$('.clockGroup').css('display', 'inline');
+			$('.clockGroup').css('display', 'block');
 			$('.timerGroup').css('display', 'none');
 			$('.stopwatchGroup').css('display', 'none');
 		}
 		else if (focusPage["timer"]){
 			$('.clockGroup').css('display', 'none');
-			$('.timerGroup').css('display', 'inline');
+			$('.timerGroup').css('display', 'block');
 			$('.stopwatchGroup').css('display', 'none');
 		}
 		else if (focusPage["stopwatch"]){
 			$('.clockGroup').css('display', 'none');
 			$('.timerGroup').css('display', 'none');
-			$('.stopwatchGroup').css('display', 'inline');
+			$('.stopwatchGroup').css('display', 'block');
 		}
 	}
 	function moveClockAppRight() {
