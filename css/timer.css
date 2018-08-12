@@ -1,4 +1,18 @@
 
+.timerGroup{
+	color: white;
+}
+
+.clockApp .timerGroup .inputTimer{
+	display: none;
+}
+.clockApp .timerGroup .showTimer{
+	display: block;
+	border: 1vh solid white;
+	font-size: 4vh;
+	color: pink;
+}
+
 input {
 	border-radius: 12px;
 	background-color: #00FFF2; 

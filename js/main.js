@@ -9,10 +9,10 @@ $(document).ready(function() {
 	var seconds = 00; 
 	var minutes = 00;
 	var hours = 00;
-	var appendTens = document.getElementById("tens")
-	var appendSeconds = document.getElementById("seconds")
-	var appendMinutes = document.getElementById("minutes")
-	var appendHours = document.getElementById("hours")
+	var appendTens = document.getElementById("stopwatchTens");
+	var appendSeconds = document.getElementById("stopwatchSeconds");
+	var appendMinutes = document.getElementById("stopwatchMinutes");
+	var appendHours = document.getElementById("stopwatchHours");
 	var stopwatchRunning = false;
 	var focusPage = {
 		"clock": true, 
@@ -148,7 +148,7 @@ $(document).ready(function() {
 			seconds++;
 			appendSeconds.innerHTML = "0" + seconds;
 			tens = 0;
-			appendTens.innerHTML = "0" + 0;
+			appendTens.innerHTML = "00";
 		} 
 		else if (tens > 9)
 			appendTens.innerHTML = tens;
@@ -157,7 +157,7 @@ $(document).ready(function() {
 			minutes++;
 			appendMinutes.innerHTML = "0" + minutes;
 			seconds = 0;
-			appendSeconds.innerHTML = "0" + 0;
+			appendSeconds.innerHTML = "00";
 		}
 		else if (seconds > 9)
 			appendSeconds.innerHTML = seconds;
@@ -166,13 +166,14 @@ $(document).ready(function() {
 			hours++;
 			appendHours.innerHTML = "0" + hours;
 			minutes = 0;
-			appendMinutes.innerHTML = "0" + 0;
+			appendMinutes.innerHTML = "00";
 		}
 		else if (minutes > 9)
 			appendMinutes.innerHTML = minutes;
 
 		if (hours > 9)
 			appendHours.innerHTML = hours;
+
 	}
 	function clearStopwatch(){
 		clearInterval(Interval);
