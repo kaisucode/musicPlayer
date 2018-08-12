@@ -69,10 +69,16 @@
 .clockAppS .clockGroup #current_date{
 	font-size: 10vh;
 }
+.clockAppS .timerGroup .showTimer{
+	font-size: 8vh;
+	color: pink;
+	margin-top: 45vh;
+}
 .clockAppS .timerGroup .inputTimer{
 	color: white;
 	font-size: 8vh;
 	margin-top: 45vh;
+	display: none;
 }
 .clockAppS .timerGroup input{
 	border-radius: 12px;

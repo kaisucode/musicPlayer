@@ -15,6 +15,16 @@ $(document).ready(function() {
 	var appendStopwatchHours = document.getElementById("stopwatchHours");
 	var stopwatchRunning = false;
 
+	var timerInterval;
+	var timerSeconds = 10; 
+	var timerMinutes = 10;
+	var timerHours = 10;
+	var appendTimerSeconds = document.getElementById("timerSeconds");
+	var appendTimerMinutes = document.getElementById("timerMinutes");
+	var appendTimerHours = document.getElementById("timerHours");
+	var timerRunning = false;
+
+
 	var focusPage = {
 		"clock": true, 
 		"timer": false,
@@ -45,16 +55,21 @@ $(document).ready(function() {
 				moveClockAppLeft();
 			else if (event.which === 39)	//Right arrow
 				moveClockAppRight();
-		}
-		else if (focusPage["timer"]){
-			if (event.key === "H"){
 
-			}
-			else if (event.key === "M"){
+			else if (focusPage["timer"]){
+				if (event.key === "s") 
+					toggleTimer();
+				else if (event.key === "c") 
+					clearTimer();
+				else if (event.key === "H"){
 
-			}
-			else if (event.key === "S"){
+				}
+				else if (event.key === "M"){
 
+				}
+				else if (event.key === "S"){
+
+				}
 			}
 		}
 	});
@@ -141,6 +156,66 @@ $(document).ready(function() {
 		}
 		refreshClockApp();
 	}
+
+
+
+
+
+
+
+	function toggleTimer(){
+		clearInterval(timerInterval);
+		if (timerRunning) 
+			timerRunning = false;
+		else {
+			timerInterval = setInterval(startTimer, 1000);
+			timerRunning = true;
+		}
+	}
+	function startTimer () {
+		timerSeconds++; 
+		
+		if (timerSeconds > 59){
+			timerMinutes++;
+			appendTimerMinutes.innerHTML = "0" + timerMinutes;
+			timerSeconds = 0;
+			appendTimerSeconds.innerHTML = "00";
+		}
+		else if (timerSeconds > 9)
+			appendTimerSeconds.innerHTML = timerSeconds;
+
+		if (timerMinutes > 59){
+			timerHours++;
+			appendTimerHours.innerHTML = "0" + timerHours;
+			timerMinutes = 0;
+			appendTimerMinutes.innerHTML = "00";
+		}
+		else if (timerMinutes > 9)
+			appendTimerMinutes.innerHTML = timerMinutes;
+
+		if (timerHours > 9)
+			appendTimerHours.innerHTML = timerHours;
+	}
+	function clearTimer(){
+		clearInterval(timerInterval);
+		appendTimerSeconds.innerHTML = "00";
+		appendTimerMinutes.innerHTML = "00";
+		appendTimerHours.innerHTML = "00";
+		timerRunning = false;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 	function toggleStopwatch(){
 		clearInterval(stopwatchInterval);
 		if (stopwatchRunning) 
@@ -156,7 +231,6 @@ $(document).ready(function() {
 		if(stopwatchTens < 9)
 			appendStopwatchTens.innerHTML = "0" + stopwatchTens;
 		else if (stopwatchTens > 99) {
-			console.log("seconds");
 			stopwatchSeconds++;
 			appendStopwatchSeconds.innerHTML = "0" + stopwatchSeconds;
 			stopwatchTens = 0;
