@@ -4,16 +4,17 @@ inApp = {
 };
 
 $(document).ready(function() {
-	var Interval;
-	var tens = 00; 
-	var seconds = 00; 
-	var minutes = 00;
-	var hours = 00;
-	var appendTens = document.getElementById("stopwatchTens");
-	var appendSeconds = document.getElementById("stopwatchSeconds");
-	var appendMinutes = document.getElementById("stopwatchMinutes");
-	var appendHours = document.getElementById("stopwatchHours");
+	var stopwatchInterval;
+	var stopwatchTens = 00; 
+	var stopwatchSeconds = 00; 
+	var stopwatchMinutes = 00;
+	var stopwatchHours = 00;
+	var appendStopwatchTens = document.getElementById("stopwatchTens");
+	var appendStopwatchSeconds = document.getElementById("stopwatchSeconds");
+	var appendStopwatchMinutes = document.getElementById("stopwatchMinutes");
+	var appendStopwatchHours = document.getElementById("stopwatchHours");
 	var stopwatchRunning = false;
+
 	var focusPage = {
 		"clock": true, 
 		"timer": false,
@@ -141,57 +142,56 @@ $(document).ready(function() {
 		refreshClockApp();
 	}
 	function toggleStopwatch(){
-		clearInterval(Interval);
+		clearInterval(stopwatchInterval);
 		if (stopwatchRunning) 
 			stopwatchRunning = false;
 		else {
-			Interval = setInterval(startStopwatch, 10);
+			stopwatchInterval = setInterval(startStopwatch, 10);
 			stopwatchRunning = true;
 		}
 	}
 	function startStopwatch () {
-		tens++; 
+		stopwatchTens++; 
 		
-		if(tens < 9)
-			appendTens.innerHTML = "0" + tens;
-		else if (tens > 99) {
+		if(stopwatchTens < 9)
+			appendStopwatchTens.innerHTML = "0" + stopwatchTens;
+		else if (stopwatchTens > 99) {
 			console.log("seconds");
-			seconds++;
-			appendSeconds.innerHTML = "0" + seconds;
-			tens = 0;
-			appendTens.innerHTML = "00";
+			stopwatchSeconds++;
+			appendStopwatchSeconds.innerHTML = "0" + stopwatchSeconds;
+			stopwatchTens = 0;
+			appendStopwatchTens.innerHTML = "00";
 		} 
-		else if (tens > 9)
-			appendTens.innerHTML = tens;
+		else if (stopwatchTens > 9)
+			appendStopwatchTens.innerHTML = stopwatchTens;
 		
-		if (seconds > 59){
-			minutes++;
-			appendMinutes.innerHTML = "0" + minutes;
-			seconds = 0;
-			appendSeconds.innerHTML = "00";
+		if (stopwatchSeconds > 59){
+			stopwatchMinutes++;
+			appendStopwatchMinutes.innerHTML = "0" + stopwatchMinutes;
+			stopwatchSeconds = 0;
+			appendStopwatchSeconds.innerHTML = "00";
 		}
-		else if (seconds > 9)
-			appendSeconds.innerHTML = seconds;
+		else if (stopwatchSeconds > 9)
+			appendStopwatchSeconds.innerHTML = stopwatchSeconds;
 
-		if (minutes > 59){
-			hours++;
-			appendHours.innerHTML = "0" + hours;
-			minutes = 0;
-			appendMinutes.innerHTML = "00";
+		if (stopwatchMinutes > 59){
+			stopwatchHours++;
+			appendStopwatchHours.innerHTML = "0" + stopwatchHours;
+			stopwatchMinutes = 0;
+			appendStopwatchMinutes.innerHTML = "00";
 		}
-		else if (minutes > 9)
-			appendMinutes.innerHTML = minutes;
+		else if (stopwatchMinutes > 9)
+			appendStopwatchMinutes.innerHTML = stopwatchMinutes;
 
-		if (hours > 9)
-			appendHours.innerHTML = hours;
-
+		if (stopwatchHours > 9)
+			appendStopwatchHours.innerHTML = stopwatchHours;
 	}
 	function clearStopwatch(){
-		clearInterval(Interval);
-		appendTens.innerHTML = "00";
-		appendSeconds.innerHTML = "00";
-		appendMinutes.innerHTML = "00";
-		appendHours.innerHTML = "00";
+		clearInterval(stopwatchInterval);
+		appendStopwatchTens.innerHTML = "00";
+		appendStopwatchSeconds.innerHTML = "00";
+		appendStopwatchMinutes.innerHTML = "00";
+		appendStopwatchHours.innerHTML = "00";
 		stopwatchRunning = false;
 	}
 
