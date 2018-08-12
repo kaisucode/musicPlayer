@@ -45,6 +45,17 @@ $(document).ready(function() {
 			else if (event.which === 39)	//Right arrow
 				moveClockAppRight();
 		}
+		else if (focusPage["timer"]){
+			if (event.key === "H"){
+
+			}
+			else if (event.key === "M"){
+
+			}
+			else if (event.key === "S"){
+
+			}
+		}
 	});
 
 	function startTime() {

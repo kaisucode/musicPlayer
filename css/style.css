@@ -11,13 +11,13 @@
 .clockApp{
 	position: absolute;
 	top: 40vh;
-	left: 5vh;
+	left: 10vh;
 }
 .clockApp .clockGroup {
 	display: block !important;
-	width: 78vh;
+	width: 63vh;
 	text-align: center;
-	font-size: 25vh;
+	font-size: 20vh;
 	color: #00FFF2;
 }
 .clockApp .clockGroup #current_date{
@@ -27,13 +27,21 @@
 	display: inline !important;
 	float: left;
 }
+.clockApp .timerGroup .showTimer{
+	display: block;
+	font-size: 3vh;
+	color: pink;
+	margin-left: 1.5vh;
+}
+.clockApp .timerGroup .inputTimer{
+	display: none;
+}
 .clockApp .stopwatchGroup{
 	display: inline !important;
 	float: right;
-	/* margin-top: 1vh; */
-	font-size: 4vh;
-	/* color: #00FFF2; */
+	font-size: 3vh;
 	color: pink;
+	margin-right: 1.5vh;
 }
 
 
@@ -59,10 +67,36 @@
 	color: #00FFF2;
 }
 .clockAppS .clockGroup #current_date{
-	font-size: 70px;
+	font-size: 10vh;
 }
-.clockAppS .stopwatchGroup{
+.clockAppS .timerGroup .inputTimer{
+	color: white;
+	font-size: 8vh;
 	margin-top: 45vh;
+}
+.clockAppS .timerGroup input{
+	border-radius: 12px;
+	background-color: #00FFF2; 
+	color: black;
+	border: none;
+	width: 150px;
+	padding: 20px;
+	padding-bottom: 10px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 8vh;
+	margin: 4px 12px;
+	/* cursor: pointer; */
+}
+.clockAppS .timerGroup input:focus{
+	color: #00FFF2; 
+	background-color: black;
+	outline: none;
+}
+
+.clockAppS .stopwatchGroup{
+	margin-top: 42vh;
 	font-size: 135px;
 	color: #00FFF2;
 }
