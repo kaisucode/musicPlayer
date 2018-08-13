@@ -2,6 +2,7 @@
 *{
 	background-color: black;
 	/* background-color: transparent; */
+	overflow: hidden;
 }
 
 
@@ -53,10 +54,14 @@
 .clockAppS{
 	text-align: center;
 }
-.clockAppS .menu{
+.clockAppS .menu_container{
 	position: absolute;
-	left: 50vh;;
 	top: 70vh;
+	width: 100%;
+}
+.clockAppS .menu{
+	/* border: 2vh solid red; */
+	text-align: center;
 }
 .clockAppS .menu li{
 	display: inline;
@@ -102,12 +107,13 @@
 }
 
 .clockAppS .stopwatchGroup{
-	margin-top: 42vh;
-	font-size: 135px;
+	margin-top: 45vh;
+	font-size: 8vh;
 	color: #00FFF2;
 }
+
 .clockAppS .menu button {
-	border-radius: 12px;
+	border-radius: 2.8vh;
 	background-color: #00FFF2; 
 	color: black;
 	border: none;
@@ -117,13 +123,15 @@
 	text-decoration: none;
 	display: inline-block;
 	font-size: 16px;
-	margin: 4px 12px;
+	/* margin: 4px 12px; */
+	margin: 0vh 3vh;
 	cursor: pointer;
 }
 .clockAppS .clockAppButtonSelected {
 	color: #00FFF2 !important; 
 	background-color: black !important;
 	outline: none !important;
+	border: 0.4vh solid #00FFF2 !important;
 }
 
 
