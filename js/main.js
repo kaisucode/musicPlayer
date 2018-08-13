@@ -173,28 +173,28 @@ $(document).ready(function() {
 		}
 	}
 	function startTimer () {
-		timerSeconds++; 
+		timerSeconds--; 
 		
-		if (timerSeconds > 59){
-			timerMinutes++;
-			appendTimerMinutes.innerHTML = "0" + timerMinutes;
-			timerSeconds = 0;
-			appendTimerSeconds.innerHTML = "00";
+		if (timerSeconds < 0){
+			timerMinutes--;
+			appendTimerMinutes.innerHTML = checkTime(timerMinutes);
+			timerSeconds = 59;
 		}
-		else if (timerSeconds > 9)
-			appendTimerSeconds.innerHTML = timerSeconds;
+		appendTimerSeconds.innerHTML = checkTime(timerSeconds);
 
-		if (timerMinutes > 59){
-			timerHours++;
-			appendTimerHours.innerHTML = "0" + timerHours;
+
+		if (timerMinutes < 0){
+			timerHours--;
+			appendTimerHours.innerHTML = checkTime(timerHours);
 			timerMinutes = 0;
-			appendTimerMinutes.innerHTML = "00";
 		}
-		else if (timerMinutes > 9)
-			appendTimerMinutes.innerHTML = timerMinutes;
+		appendTimerMinutes.innerHTML = checkTime(timerMinutes);
 
-		if (timerHours > 9)
-			appendTimerHours.innerHTML = timerHours;
+		appendTimerHours.innerHTML = checkTime(timerHours);
+
+		function checkTime(i) {
+			return ( i<10 ? "0"+i : i );
+		}
 	}
 	function clearTimer(){
 		clearInterval(timerInterval);
