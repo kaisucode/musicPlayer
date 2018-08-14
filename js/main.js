@@ -16,13 +16,14 @@ $(document).ready(function() {
 	var stopwatchRunning = false;
 
 	var timerInterval;
-	var timerSeconds = 10; 
-	var timerMinutes = 10;
-	var timerHours = 10;
+	var timerSeconds = 0; 
+	var timerMinutes = 0;
+	var timerHours = 0;
 	var appendTimerSeconds = document.getElementById("timerSeconds");
 	var appendTimerMinutes = document.getElementById("timerMinutes");
 	var appendTimerHours = document.getElementById("timerHours");
 	var timerRunning = false;
+	var timerActivated = false;
 
 
 	var focusPage = {
@@ -45,16 +46,19 @@ $(document).ready(function() {
 			$("#clockApp").removeClass("clockApp");
 			$("#clockApp").addClass("clockAppS");
 			refreshClockApp();
+			$(".inputTimer").css("display", "block", "important");
+			function activateTimerInput(){
+				if (timerSeconds === 0 && timerMinutes === 0 && timerHours === 0){
+					$(".showTimer").css("display", "none", "important");
+					$(".inputTimer").css("display", "block", "important");
+				}	
+			}
 		}
 		else if (inApp["time"]){
 			if (event.key === "s" && focusPage["stopwatch"]) 
 				toggleStopwatch();
 			else if (event.key === "c" && focusPage["stopwatch"])
 				clearStopwatch();
-			else if (event.which === 37)	// Left
-				moveClockAppLeft();
-			else if (event.which === 39)	//Right arrow
-				moveClockAppRight();
 
 			else if (focusPage["timer"]){
 				if (event.key === "s") 
@@ -62,15 +66,30 @@ $(document).ready(function() {
 				else if (event.key === "c") 
 					clearTimer();
 				else if (event.key === "H"){
-
+					event.preventDefault();
+					$("#timerHoursInput").focus();
+					$("#timerHoursInput").val("");
 				}
 				else if (event.key === "M"){
-
+					event.preventDefault();
+					$("#timerMinutesInput").focus();
+					$("#timerMinutesInput").val("");
 				}
 				else if (event.key === "S"){
-
+					event.preventDefault();
+					$("#timerSecondsInput").focus();
+					$("#timerSecondsInput").val("");
+				}
+				else if (event.which === 27){		// Esc
+					$("#timerButton").focus();
+					$("#timerButton").css("outline", "none");
 				}
 			}
+
+			if (event.which === 37)	// Left
+				moveClockAppLeft();
+			else if (event.which === 39)	//Right arrow
+				moveClockAppRight();
 		}
 	});
 
@@ -107,6 +126,7 @@ $(document).ready(function() {
 			$('.clockGroup').css('display', 'none');
 			$('.timerGroup').css('display', 'block');
 			$('.stopwatchGroup').css('display', 'none');
+			// activateTimerInput();
 		}
 		else if (focusPage["stopwatch"]){
 			$('.clockGroup').css('display', 'none');
@@ -168,11 +188,36 @@ $(document).ready(function() {
 		if (timerRunning) 
 			timerRunning = false;
 		else {
+			// if (timerSeconds === 0 && timerMinutes === 0 && timerHours === 0){
+			console.log("hai");
+			console.log(timerActivated);
+			if (timerActivated === false){
+				timerSeconds = $("#timerSecondsInput").val(); 
+				timerMinutes = $("#timerMinutesInput").val();
+				timerHours = $("#timerHoursInput").val();
+				appendTimerSeconds.innerHTML = checkTime(timerSeconds);
+				appendTimerMinutes.innerHTML = checkTime(timerMinutes);
+				appendTimerHours.innerHTML = checkTime(timerHours);
+
+				timerActivated = true;
+				$(".inputTimer").addClass("timerActivated");
+			}
 			timerInterval = setInterval(startTimer, 1000);
 			timerRunning = true;
 		}
+		function checkTime(i) {
+			return ( i<10 ? "0"+i : i );
+		}
 	}
 	function startTimer () {
+		if (timerSeconds <= 0 && timerMinutes <= 0 && timerHours <= 0){
+			timerActivated = false;
+			timerRunning = false;
+			$(".inputTimer").addClass("timerSetup");
+			clearTimer();
+			return;
+		}
+
 		timerSeconds--; 
 		
 		if (timerSeconds < 0){
@@ -189,7 +234,6 @@ $(document).ready(function() {
 			timerMinutes = 0;
 		}
 		appendTimerMinutes.innerHTML = checkTime(timerMinutes);
-
 		appendTimerHours.innerHTML = checkTime(timerHours);
 
 		function checkTime(i) {
