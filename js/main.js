@@ -46,7 +46,6 @@ $(document).ready(function() {
 			$("#clockApp").removeClass("clockApp");
 			$("#clockApp").addClass("clockAppS");
 			refreshClockApp();
-			$(".inputTimer").css("display", "block", "important");
 			function activateTimerInput(){
 				if (timerSeconds === 0 && timerMinutes === 0 && timerHours === 0){
 					$(".showTimer").css("display", "none", "important");
@@ -111,10 +110,6 @@ $(document).ready(function() {
 		year + "/" + month + "/" + date;
 
 		var t = setTimeout(startTime, 500);
-
-		function checkTime(i) {
-			return ( i<10 ? "0"+i : i );
-		}
 	}
 	function refreshClockApp() {
 		if (focusPage["clock"]){
@@ -188,32 +183,32 @@ $(document).ready(function() {
 		if (timerRunning) 
 			timerRunning = false;
 		else {
-			// if (timerSeconds === 0 && timerMinutes === 0 && timerHours === 0){
-			console.log("hai");
-			console.log(timerActivated);
-			if (timerActivated === false){
-				timerSeconds = $("#timerSecondsInput").val(); 
-				timerMinutes = $("#timerMinutesInput").val();
-				timerHours = $("#timerHoursInput").val();
+			if (!timerActivated){
+				var tempTimerSeconds = $("#timerSecondsInput").val(); 
+				var tempTimerMinutes = $("#timerMinutesInput").val();
+				var tempTimerHours = $("#timerHoursInput").val();
+				if ((isNaN(tempTimerSeconds) || isNaN(tempTimerMinutes) || isNaN(tempTimerHours)) || (tempTimerSeconds === '0' && tempTimerMinutes === '0' && tempTimerHours === '0')){
+					return;
+				}
+
+				timerSeconds = tempTimerSeconds%60;
+				tempTimerMinutes += tempTimerSeconds/60;
+				timerMinutes = Math.floor(tempTimerMinutes%60);
+				timerHours = Math.floor(tempTimerHours + tempTimerMinutes/60);
+
 				appendTimerSeconds.innerHTML = checkTime(timerSeconds);
 				appendTimerMinutes.innerHTML = checkTime(timerMinutes);
 				appendTimerHours.innerHTML = checkTime(timerHours);
 
 				timerActivated = true;
-				$(".inputTimer").addClass("timerActivated");
+				$(".inputTimer").css("display", "none", "important");
 			}
 			timerInterval = setInterval(startTimer, 1000);
 			timerRunning = true;
 		}
-		function checkTime(i) {
-			return ( i<10 ? "0"+i : i );
-		}
 	}
 	function startTimer () {
 		if (timerSeconds <= 0 && timerMinutes <= 0 && timerHours <= 0){
-			timerActivated = false;
-			timerRunning = false;
-			$(".inputTimer").addClass("timerSetup");
 			clearTimer();
 			return;
 		}
@@ -235,29 +230,17 @@ $(document).ready(function() {
 		}
 		appendTimerMinutes.innerHTML = checkTime(timerMinutes);
 		appendTimerHours.innerHTML = checkTime(timerHours);
-
-		function checkTime(i) {
-			return ( i<10 ? "0"+i : i );
-		}
 	}
 	function clearTimer(){
 		clearInterval(timerInterval);
+		timerActivated = false;
+		timerRunning = false;
+		$(".inputTimer").css("display", "block", "important");
 		appendTimerSeconds.innerHTML = "00";
 		appendTimerMinutes.innerHTML = "00";
 		appendTimerHours.innerHTML = "00";
 		timerRunning = false;
 	}
-
-
-
-
-
-
-
-
-
-
-
 
 
 	function toggleStopwatch(){
@@ -311,6 +294,11 @@ $(document).ready(function() {
 		appendStopwatchMinutes.innerHTML = "00";
 		appendStopwatchHours.innerHTML = "00";
 		stopwatchRunning = false;
+	}
+
+
+	function checkTime(i) {
+		return ( i<10 ? "0"+i : i );
 	}
 
 });

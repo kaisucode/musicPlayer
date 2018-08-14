@@ -83,12 +83,6 @@
 	font-size: 8vh;
 	margin-top: 45vh;
 }
-.timerActivated{
-	display: none !important;
-}
-.timerSetup{
-	display: block !important;
-}
 .clockAppS .timerGroup input{
 	border-radius: 12px;
 	background-color: #00FFF2; 

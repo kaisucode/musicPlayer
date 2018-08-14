@@ -1,6 +1,11 @@
 
 
-Fix bug of stopwatch clear not clearing minutes
+
+Message and sound when timer done
+
+
+
+
 
 Timer
 Add date to clock
