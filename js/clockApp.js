@@ -2,11 +2,16 @@
 inApp = {
 	"time": false
 };
+var self = this;
 
 var stopwatchTens = 00;
 var stopwatchSeconds = 00; 
 var stopwatchMinutes = 00;
 var stopwatchHours = 00;
+
+var timerSeconds = 0; 
+var timerMinutes = 0;
+var timerHours = 0;
 
 function checkTime(i) {
 	return ( i<10 ? "0"+i : i );
@@ -17,12 +22,6 @@ var clockApp  = {
 	// timerInterval,
 
 	stopwatchRunning : false,
-	timerSeconds : 0, 
-	timerMinutes : 0,
-	timerHours : 0,
-	appendTimerSeconds : document.getElementById("timerSeconds"),
-	appendTimerMinutes : document.getElementById("timerMinutes"),
-	appendTimerHours : document.getElementById("timerHours"),
 	timerRunning : false,
 	timerActivated : false,
 	focusPage : {
@@ -118,11 +117,11 @@ var clockApp  = {
 
 
 	toggleTimer(){
-		clearInterval(timerInterval);
-		if (timerRunning) 
-			timerRunning = false;
+		clearInterval(this.timerInterval);
+		if (this.timerRunning) 
+			this.timerRunning = false;
 		else {
-			if (!timerActivated){
+			if (!this.timerActivated){
 				var tempTimerSeconds = $("#timerSecondsInput").val(); 
 				var tempTimerMinutes = $("#timerMinutesInput").val();
 				var tempTimerHours = $("#timerHoursInput").val();
@@ -135,20 +134,25 @@ var clockApp  = {
 				timerMinutes = Math.floor(tempTimerMinutes%60);
 				timerHours = Math.floor(tempTimerHours + tempTimerMinutes/60);
 
-				appendTimerSeconds.innerHTML = checkTime(timerSeconds);
-				appendTimerMinutes.innerHTML = checkTime(timerMinutes);
-				appendTimerHours.innerHTML = checkTime(timerHours);
+				document.getElementById("timerSeconds").innerHTML = checkTime(timerSeconds);
+				document.getElementById("timerMinutes").innerHTML = checkTime(timerMinutes);
+				document.getElementById("timerHours").innerHTML = checkTime(timerHours);
 
 				timerActivated = true;
 				$(".inputTimer").css("display", "none", "important");
 			}
-			timerInterval = setInterval(startTimer, 1000);
+			this.timerInterval = setInterval(this.startTimer, 1000);
 			timerRunning = true;
 		}
 	},
 	startTimer () {
+		var appendTimerSeconds = document.getElementById("timerSeconds");
+		var appendTimerMinutes = document.getElementById("timerMinutes");
+		var appendTimerHours = document.getElementById("timerHours");
+
 		if (timerSeconds <= 0 && timerMinutes <= 0 && timerHours <= 0){
 			clearTimer();
+
 			return;
 		}
 
@@ -170,8 +174,8 @@ var clockApp  = {
 		appendTimerMinutes.innerHTML = checkTime(timerMinutes);
 		appendTimerHours.innerHTML = checkTime(timerHours);
 	},
-	clearTimer(){
-		clearInterval(timerInterval);
+	static clearTimer(){
+		clearInterval(this.timerInterval);
 		timerActivated = false;
 		timerRunning = false;
 		$(".inputTimer").css("display", "block", "important");
@@ -215,10 +219,10 @@ var clockApp  = {
 	},
 	clearStopwatch(){
 		clearInterval(this.stopwatchInterval);
-		this.appendStopwatchTens.innerHTML = "00";
-		this.appendStopwatchSeconds.innerHTML = "00";
-		this.appendStopwatchMinutes.innerHTML = "00";
-		this.appendStopwatchHours.innerHTML = "00";
+		document.getElementById("stopwatchTens").innerHTML = "00";
+		document.getElementById("stopwatchSeconds").innerHTML = "00";
+		document.getElementById("stopwatchMinutes").innerHTML = "00";
+		document.getElementById("stopwatchHours").innerHTML = "00";
 		this.stopwatchRunning = false;
 	}
 
@@ -256,7 +260,7 @@ $(document).ready(function() {
 
 			else if (clockApp.focusPage["timer"]){
 				if (event.key === "s") 
-					toggleTimer();
+					clockApp.toggleTimer();
 				else if (event.key === "c") 
 					clearTimer();
 				else if (event.key === "H"){
