@@ -13,6 +13,7 @@ var timerSeconds = 0;
 var timerMinutes = 0;
 var timerHours = 0;
 
+
 function checkTime(i) {
 	return ( i<10 ? "0"+i : i );
 }
@@ -138,7 +139,7 @@ var clockApp  = {
 				document.getElementById("timerMinutes").innerHTML = checkTime(timerMinutes);
 				document.getElementById("timerHours").innerHTML = checkTime(timerHours);
 
-				timerActivated = true;
+				this.timerActivated = true;
 				$(".inputTimer").css("display", "none", "important");
 			}
 			this.timerInterval = setInterval(this.startTimer, 1000);
@@ -146,13 +147,8 @@ var clockApp  = {
 		}
 	},
 	startTimer() {
-		var appendTimerSeconds = document.getElementById("timerSeconds");
-		var appendTimerMinutes = document.getElementById("timerMinutes");
-		var appendTimerHours = document.getElementById("timerHours");
-
 		if (timerSeconds <= 0 && timerMinutes <= 0 && timerHours <= 0){
 			clockApp.clearTimer();
-
 			return;
 		}
 
@@ -160,29 +156,28 @@ var clockApp  = {
 		
 		if (timerSeconds < 0){
 			timerMinutes--;
-			appendTimerMinutes.innerHTML = checkTime(timerMinutes);
+			document.getElementById("timerSeconds").innerHTML = checkTime(timerMinutes);
 			timerSeconds = 59;
 		}
-		appendTimerSeconds.innerHTML = checkTime(timerSeconds);
+		document.getElementById("timerSeconds").innerHTML = checkTime(timerSeconds);
 
 
 		if (timerMinutes < 0){
 			timerHours--;
-			appendTimerHours.innerHTML = checkTime(timerHours);
+			document.getElementById("timerSeconds").innerHTML = checkTime(timerHours);
 			timerMinutes = 0;
 		}
-		appendTimerMinutes.innerHTML = checkTime(timerMinutes);
-		appendTimerHours.innerHTML = checkTime(timerHours);
+		document.getElementById("timerMinutes").innerHTML = checkTime(timerMinutes);
+		document.getElementById("timerHours").innerHTML = checkTime(timerHours);
 	},
 	clearTimer(){
 		clearInterval(this.timerInterval);
-		timerActivated = false;
-		timerRunning = false;
+		this.timerActivated = false;
+		this.timerRunning = false;
 		$(".inputTimer").css("display", "block", "important");
 		document.getElementById("timerSeconds").innerHTML = "00";
 		document.getElementById("timerMinutes").innerHTML = "00";
 		document.getElementById("timerHours").innerHTML = "00";
-		timerRunning = false;
 	},
 
 
