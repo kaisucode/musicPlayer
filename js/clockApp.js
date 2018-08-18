@@ -142,16 +142,16 @@ var clockApp  = {
 				$(".inputTimer").css("display", "none", "important");
 			}
 			this.timerInterval = setInterval(this.startTimer, 1000);
-			timerRunning = true;
+			this.timerRunning = true;
 		}
 	},
-	startTimer () {
+	startTimer() {
 		var appendTimerSeconds = document.getElementById("timerSeconds");
 		var appendTimerMinutes = document.getElementById("timerMinutes");
 		var appendTimerHours = document.getElementById("timerHours");
 
 		if (timerSeconds <= 0 && timerMinutes <= 0 && timerHours <= 0){
-			clearTimer();
+			clockApp.clearTimer();
 
 			return;
 		}
@@ -174,14 +174,14 @@ var clockApp  = {
 		appendTimerMinutes.innerHTML = checkTime(timerMinutes);
 		appendTimerHours.innerHTML = checkTime(timerHours);
 	},
-	static clearTimer(){
+	clearTimer(){
 		clearInterval(this.timerInterval);
 		timerActivated = false;
 		timerRunning = false;
 		$(".inputTimer").css("display", "block", "important");
-		appendTimerSeconds.innerHTML = "00";
-		appendTimerMinutes.innerHTML = "00";
-		appendTimerHours.innerHTML = "00";
+		document.getElementById("timerSeconds").innerHTML = "00";
+		document.getElementById("timerMinutes").innerHTML = "00";
+		document.getElementById("timerHours").innerHTML = "00";
 		timerRunning = false;
 	},
 
@@ -195,7 +195,7 @@ var clockApp  = {
 			this.stopwatchRunning = true;
 		}
 	},
-	startStopwatch () {
+	startStopwatch() {
 		stopwatchTens++; 
 
 		var tempStopwatchTens = stopwatchTens;
