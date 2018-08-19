@@ -1,5 +1,8 @@
 
 
+clockApp.js
+	-Alias document.getElementById
+	https://stackoverflow.com/questions/6398787/javascript-shorthand-for-getelementbyid
 
 Message and sound when timer done
 
@@ -8,7 +11,6 @@ Message and sound when timer done
 
 
 Timer
-Add date to clock
 Add alarm
 
 Calandar
