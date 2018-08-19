@@ -178,14 +178,20 @@ var clockApp  = {
 
 	toggleStopwatch(){
 		clearInterval(this.stopwatchInterval);
-		if (this.stopwatchRunning) 
-			this.stopwatchRunning = false;
-		else {
+		if (!this.stopwatchRunning) {
 			this.stopwatchInterval = setInterval(this.startStopwatch, 10);
 			this.stopwatchRunning = true;
 		}
+		else if (this.stopwatchRunning)
+			this.stopwatchRunning = false;
 	},
-	startStopwatch() {
+	updateStopwatch(tens, seconds, minutes, hours){
+		byId("stopwatchTens").innerHTML = clockApp.checkTime(tens);
+		byId("stopwatchSeconds").innerHTML = clockApp.checkTime(seconds);
+		byId("stopwatchMinutes").innerHTML = clockApp.checkTime(minutes);
+		byId("stopwatchHours").innerHTML = clockApp.checkTime(hours);
+	},
+	startStopwatch(){
 		clockApp.stopwatchTens++; 
 
 		var tempStopwatchTens = clockApp.stopwatchTens;
@@ -201,18 +207,15 @@ var clockApp  = {
 		tempStopwatchHours += tempStopwatchMinutes/60;
 		clockApp.stopwatchHours = Math.floor(tempStopwatchHours);
 
-		byId("stopwatchTens").innerHTML = clockApp.checkTime(clockApp.stopwatchTens);
-		byId("stopwatchSeconds").innerHTML = clockApp.checkTime(clockApp.stopwatchSeconds);
-		byId("stopwatchMinutes").innerHTML = clockApp.checkTime(clockApp.stopwatchMinutes);
-		byId("stopwatchHours").innerHTML = clockApp.checkTime(clockApp.stopwatchHours);
-
+		clockApp.updateStopwatch(clockApp.stopwatchTens, clockApp.stopwatchSeconds, clockApp.stopwatchMinutes, clockApp.stopwatchHours);
 	},
 	clearStopwatch(){
 		clearInterval(this.stopwatchInterval);
-		byId("stopwatchTens").innerHTML = "00";
-		byId("stopwatchSeconds").innerHTML = "00";
-		byId("stopwatchMinutes").innerHTML = "00";
-		byId("stopwatchHours").innerHTML = "00";
+		clockApp.stopwatchTens = 0;
+		clockApp.stopwatchSeconds = 0;
+		clockApp.stopwatchMinutes = 0;
+		clockApp.stopwatchHours = 0;
+		clockApp.updateStopwatch(clockApp.stopwatchTens, clockApp.stopwatchSeconds, clockApp.stopwatchMinutes, clockApp.stopwatchHours);
 		this.stopwatchRunning = false;
 	}
 
