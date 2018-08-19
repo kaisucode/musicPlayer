@@ -61,7 +61,6 @@ var clockApp  = {
 			$('.clockGroup').css('display', 'none');
 			$('.timerGroup').css('display', 'block');
 			$('.stopwatchGroup').css('display', 'none');
-			// activateTimerInput();
 		}
 		else if (this.focusPage["stopwatch"]){
 			$('.clockGroup').css('display', 'none');
@@ -118,6 +117,11 @@ var clockApp  = {
 
 
 
+	updateTimer(seconds, minutes, hours){
+		byId("timerSeconds").innerHTML = clockApp.checkTime(seconds);
+		byId("timerMinutes").innerHTML = clockApp.checkTime(minutes);
+		byId("timerHours").innerHTML = clockApp.checkTime(hours);
+	},
 	toggleTimer(){
 		clearInterval(this.timerInterval);
 		if (this.timerRunning) 
@@ -135,9 +139,8 @@ var clockApp  = {
 				tempTimerMinutes = parseInt(tempTimerMinutes) + parseInt(tempTimerSeconds/60);
 				clockApp.timerMinutes = tempTimerMinutes%60;
 				clockApp.timerHours = parseInt(tempTimerHours) + parseInt(tempTimerMinutes/60);
-				byId("timerSeconds").innerHTML = clockApp.checkTime(clockApp.timerSeconds);
-				byId("timerMinutes").innerHTML = clockApp.checkTime(clockApp.timerMinutes);
-				byId("timerHours").innerHTML = clockApp.checkTime(clockApp.timerHours);
+
+				clockApp.updateTimer(clockApp.timerSeconds, clockApp.timerMinutes, clockApp.timerHours);
 
 				this.timerActivated = true;
 				$(".inputTimer").css("display", "none", "important");
@@ -161,21 +164,24 @@ var clockApp  = {
 			clockApp.timerHours--;
 			clockApp.timerMinutes = 0;
 		}
-		byId("timerSeconds").innerHTML = clockApp.checkTime(clockApp.timerSeconds);
-		byId("timerMinutes").innerHTML = clockApp.checkTime(clockApp.timerMinutes);
-		byId("timerHours").innerHTML = clockApp.checkTime(clockApp.timerHours);
+
+		clockApp.updateTimer(clockApp.timerSeconds, clockApp.timerMinutes, clockApp.timerHours);
 	},
 	clearTimer(){
 		clearInterval(this.timerInterval);
 		this.timerActivated = false;
 		this.timerRunning = false;
 		$(".inputTimer").css("display", "block", "important");
-		byId("timerSeconds").innerHTML = "00";
-		byId("timerMinutes").innerHTML = "00";
-		byId("timerHours").innerHTML = "00";
+		clockApp.updateTimer(0, 0, 0, 0);
 	},
 
 
+	updateStopwatch(tens, seconds, minutes, hours){
+		byId("stopwatchTens").innerHTML = clockApp.checkTime(tens);
+		byId("stopwatchSeconds").innerHTML = clockApp.checkTime(seconds);
+		byId("stopwatchMinutes").innerHTML = clockApp.checkTime(minutes);
+		byId("stopwatchHours").innerHTML = clockApp.checkTime(hours);
+	},
 	toggleStopwatch(){
 		clearInterval(this.stopwatchInterval);
 		if (!this.stopwatchRunning) {
@@ -184,12 +190,6 @@ var clockApp  = {
 		}
 		else if (this.stopwatchRunning)
 			this.stopwatchRunning = false;
-	},
-	updateStopwatch(tens, seconds, minutes, hours){
-		byId("stopwatchTens").innerHTML = clockApp.checkTime(tens);
-		byId("stopwatchSeconds").innerHTML = clockApp.checkTime(seconds);
-		byId("stopwatchMinutes").innerHTML = clockApp.checkTime(minutes);
-		byId("stopwatchHours").innerHTML = clockApp.checkTime(hours);
 	},
 	startStopwatch(){
 		clockApp.stopwatchTens++; 
@@ -218,8 +218,6 @@ var clockApp  = {
 		clockApp.updateStopwatch(clockApp.stopwatchTens, clockApp.stopwatchSeconds, clockApp.stopwatchMinutes, clockApp.stopwatchHours);
 		this.stopwatchRunning = false;
 	}
-
-
 }
 
 $(document).ready(function() {
@@ -238,19 +236,12 @@ $(document).ready(function() {
 			$("#clockApp").removeClass("clockApp");
 			$("#clockApp").addClass("clockAppS");
 			clockApp.refreshClockApp();
-			function activateTimerInput(){
-				if (timerSeconds === 0 && timerMinutes === 0 && timerHours === 0){
-					$(".showTimer").css("display", "none", "important");
-					$(".inputTimer").css("display", "block", "important");
-				}	
-			}
 		}
 		else if (inApp["time"]){
 			if (event.key === "s" && clockApp.focusPage["stopwatch"]) 
 				clockApp.toggleStopwatch();
 			else if (event.key === "c" && clockApp.focusPage["stopwatch"])
 				clockApp.clearStopwatch();
-
 			else if (clockApp.focusPage["timer"]){
 				if (event.key === "s") 
 					clockApp.toggleTimer();
