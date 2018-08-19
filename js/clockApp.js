@@ -1,4 +1,6 @@
 
+var byId = function( id ) { return document.getElementById( id ); };
+
 inApp = {
 	"time": false
 };
@@ -37,14 +39,14 @@ var clockApp  = {
 		var s = today.getSeconds();
 		m = clockApp.checkTime(m);
 		s = clockApp.checkTime(s);
-		document.getElementById('current_time').innerHTML =
+		byId('current_time').innerHTML =
 		h + ":" + m + ":" + s;
 
 		var year = today.getYear()-100+2000;
 		var month = today.getMonth()+1;
 		var date = today.getDate();
 		// var day = today.getDay();
-		document.getElementById('current_date').innerHTML =
+		byId('current_date').innerHTML =
 		year + "/" + month + "/" + date;
 
 		var t = setTimeout(this.startTime, 500);
@@ -133,9 +135,9 @@ var clockApp  = {
 				tempTimerMinutes = parseInt(tempTimerMinutes) + parseInt(tempTimerSeconds/60);
 				clockApp.timerMinutes = tempTimerMinutes%60;
 				clockApp.timerHours = parseInt(tempTimerHours) + parseInt(tempTimerMinutes/60);
-				document.getElementById("timerSeconds").innerHTML = clockApp.checkTime(clockApp.timerSeconds);
-				document.getElementById("timerMinutes").innerHTML = clockApp.checkTime(clockApp.timerMinutes);
-				document.getElementById("timerHours").innerHTML = clockApp.checkTime(clockApp.timerHours);
+				byId("timerSeconds").innerHTML = clockApp.checkTime(clockApp.timerSeconds);
+				byId("timerMinutes").innerHTML = clockApp.checkTime(clockApp.timerMinutes);
+				byId("timerHours").innerHTML = clockApp.checkTime(clockApp.timerHours);
 
 				this.timerActivated = true;
 				$(".inputTimer").css("display", "none", "important");
@@ -159,18 +161,18 @@ var clockApp  = {
 			clockApp.timerHours--;
 			clockApp.timerMinutes = 0;
 		}
-		document.getElementById("timerSeconds").innerHTML = clockApp.checkTime(clockApp.timerSeconds);
-		document.getElementById("timerMinutes").innerHTML = clockApp.checkTime(clockApp.timerMinutes);
-		document.getElementById("timerHours").innerHTML = clockApp.checkTime(clockApp.timerHours);
+		byId("timerSeconds").innerHTML = clockApp.checkTime(clockApp.timerSeconds);
+		byId("timerMinutes").innerHTML = clockApp.checkTime(clockApp.timerMinutes);
+		byId("timerHours").innerHTML = clockApp.checkTime(clockApp.timerHours);
 	},
 	clearTimer(){
 		clearInterval(this.timerInterval);
 		this.timerActivated = false;
 		this.timerRunning = false;
 		$(".inputTimer").css("display", "block", "important");
-		document.getElementById("timerSeconds").innerHTML = "00";
-		document.getElementById("timerMinutes").innerHTML = "00";
-		document.getElementById("timerHours").innerHTML = "00";
+		byId("timerSeconds").innerHTML = "00";
+		byId("timerMinutes").innerHTML = "00";
+		byId("timerHours").innerHTML = "00";
 	},
 
 
@@ -199,18 +201,18 @@ var clockApp  = {
 		tempStopwatchHours += tempStopwatchMinutes/60;
 		clockApp.stopwatchHours = Math.floor(tempStopwatchHours);
 
-		document.getElementById("stopwatchTens").innerHTML = clockApp.checkTime(clockApp.stopwatchTens);
-		document.getElementById("stopwatchSeconds").innerHTML = clockApp.checkTime(clockApp.stopwatchSeconds);
-		document.getElementById("stopwatchMinutes").innerHTML = clockApp.checkTime(clockApp.stopwatchMinutes);
-		document.getElementById("stopwatchHours").innerHTML = clockApp.checkTime(clockApp.stopwatchHours);
+		byId("stopwatchTens").innerHTML = clockApp.checkTime(clockApp.stopwatchTens);
+		byId("stopwatchSeconds").innerHTML = clockApp.checkTime(clockApp.stopwatchSeconds);
+		byId("stopwatchMinutes").innerHTML = clockApp.checkTime(clockApp.stopwatchMinutes);
+		byId("stopwatchHours").innerHTML = clockApp.checkTime(clockApp.stopwatchHours);
 
 	},
 	clearStopwatch(){
 		clearInterval(this.stopwatchInterval);
-		document.getElementById("stopwatchTens").innerHTML = "00";
-		document.getElementById("stopwatchSeconds").innerHTML = "00";
-		document.getElementById("stopwatchMinutes").innerHTML = "00";
-		document.getElementById("stopwatchHours").innerHTML = "00";
+		byId("stopwatchTens").innerHTML = "00";
+		byId("stopwatchSeconds").innerHTML = "00";
+		byId("stopwatchMinutes").innerHTML = "00";
+		byId("stopwatchHours").innerHTML = "00";
 		this.stopwatchRunning = false;
 	}
 
