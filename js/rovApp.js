@@ -601,29 +601,22 @@ function nextSong(){
 		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").removeClass("loopedBox");
 		changeMusicIndex(1);
 		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
-
-		skipToNextTrack();
 	}
-	else{
+	else
 		changeMusicIndex(1);
-		skipToNextTrack();
-	}
+	skipToNextTrack();
 }
 
 function previousSong(){
 	if (loopStyle["single"]){
 		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").removeClass("loopedBox");
-		// lowerLoopLimit--;
-		// upperLoopLimit--;
 		changeMusicIndex(-1);
 		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
-
 		skipToNextTrack();
 	}
-	else{
+	else
 		changeMusicIndex(-1);
-		skipToNextTrack();
-	}
+	skipToNextTrack();
 }
 
 function skipToNextTrack(){
@@ -653,6 +646,8 @@ function updateLoopLimits(newStyle){
 
 	if (loopStyle["single"]){
 		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
+		musicIndex = cursorOnIndex;
+		skipToNextTrack();
 	}
 	else if (loopStyle["multi"]){
 		for (var i = lowerLoopLimit; i < upperLoopLimit+1; i++)
@@ -679,17 +674,12 @@ function setLoop(newStyle){
 }
 
 function changeMusicIndex(amount){
-	console.log("Old music index: "+musicIndex);
 	musicIndex+=amount;
-	if (loopStyle["single"]){
-		lowerLoopLimit+=amount;
-		upperLoopLimit+=amount;
-		if (musicIndex < 0)
-			lowerLoopLimit = 0;
-		else if (musicIndex > nowPlaying.length-1)
-			lowerLoopLimit = 0;
+
+	if (loopStyle["default"] && (musicIndex < 0 || musicIndex > nowPlaying.length-1))
+			musicIndex = 0;
+	else if (loopStyle["single"])
 		musicIndex = lowerLoopLimit;
-	}
 
 	// else if (!loopStyle["default"]){
 	//   if(musicIndex < lowerLoopLimit || musicIndex > upperLoopLimit || musicIndex < 0 || musicIndex > nowPlaying.length-1){
@@ -698,15 +688,6 @@ function changeMusicIndex(amount){
 	//     musicIndex = lowerLoopLimit;
 	//   }
 	// }
-	else if (loopStyle["default"]){
-		console.log("New music index: "+musicIndex);
-		console.log("nowPlaying.length-1: "+(nowPlaying.length-1));
-		if(musicIndex < 0 || musicIndex > nowPlaying.length-1)
-		{
-			console.log("trigger restart");
-			musicIndex = 0;
-		}
-	}
 }
 
 function moveCursorToLast(){
