@@ -160,7 +160,7 @@ function loadLibrary(){
 function init(){
 	audio = new Audio('data/mp3/'+nowPlaying[musicIndex]+".mp3");
 	audio.addEventListener('ended', function(){
-		changeMusicIndex(0);
+		changeMusicIndex(1);
 		loadNextTrack();
 		return;
 	})
@@ -247,9 +247,9 @@ window.onload = function (){
 
 	document.addEventListener("keydown", function onEvent(event) {
 
-		console.log("musicIndex: " + musicIndex);
-		console.log("Cursor on: " + cursorOnIndex);
-		console.log("Cursor on song: " + nowPlaying[cursorOnIndex]);
+		// console.log("musicIndex: " + musicIndex);
+		// console.log(lowerLoopLimit);
+		// console.log(upperLoopLimit);
 
 		// Key lag
 		if (event.key === "f" || event.key === "d"){
@@ -603,23 +603,29 @@ function nextSong(){
 		upperLoopLimit++;
 		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
 
-		changeMusicIndex(0);
+		changeMusicIndex(1);
 		skipToNextTrack();
 	}
 	else{
-		changeMusicIndex(1);
+		// changeMusicIndex(1);
 		skipToNextTrack();
 	}
 }
 
 function previousSong(){
-	$(songOrder[lowerLoopLimit]+" div:nth-child(2)").removeClass("loopedBox");
-	lowerLoopLimit--;
-	upperLoopLimit--;
-	$(songOrder[lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
+	if (loopStyle["single"]){
+		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").removeClass("loopedBox");
+		lowerLoopLimit--;
+		upperLoopLimit--;
+		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
 
-	changeMusicIndex(-1);
-	skipToNextTrack();
+		changeMusicIndex(-1);
+		skipToNextTrack();
+	}
+	else{
+		changeMusicIndex(-1);
+		skipToNextTrack();
+	}
 }
 
 function skipToNextTrack(){
@@ -642,7 +648,7 @@ function updateLoopLimits(newStyle){
 	var loopLimits = {
 		"default": [0, nowPlaying.length-1], 
 		"single": [cursorOnIndex, cursorOnIndex],
-		"multi": [getSelectStart(), getSelectEnd()+1]
+		"multi": [getSelectStart(), getSelectEnd()]
 	};
 	lowerLoopLimit = loopLimits[newStyle][0];
 	upperLoopLimit = loopLimits[newStyle][1];
@@ -651,7 +657,7 @@ function updateLoopLimits(newStyle){
 		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
 	}
 	else if (loopStyle["multi"]){
-		for (var i = lowerLoopLimit; i < upperLoopLimit; i++)
+		for (var i = lowerLoopLimit; i < upperLoopLimit+1; i++)
 			$(songOrder[i]+" div:nth-child(2)").addClass("loopedBox");
 	}
 }
@@ -668,22 +674,29 @@ function setLoop(newStyle){
 	for (var key in loopStyle)
 		loopStyle[key] = false;
 	loopStyle[newStyle] = true;
+	console.log(loopStyle);
 
 	updateLoopLimits(newStyle);
 	musicIndex++;
 }
 
 function changeMusicIndex(amount){
+	console.log("Old music index: "+musicIndex);
 	musicIndex+=amount;
 	if (!loopStyle["default"]){
-		if(musicIndex < lowerLoopLimit || musicIndex >= upperLoopLimit)
+		console.log("Other loop");
+		if(musicIndex < lowerLoopLimit || musicIndex > upperLoopLimit)
 			musicIndex = lowerLoopLimit;
 	}
 	else if (loopStyle["default"]){
-		console.log("musicIndex = "+musicIndex);
-		console.log(nowPlaying[musicIndex]);
-		if(musicIndex < 0 || musicIndex === nowPlaying.length-1)
+		console.log("Default loop");
+		console.log("New music index: "+musicIndex);
+		console.log("nowPlaying.length-1: "+(nowPlaying.length-1));
+		if(musicIndex < 0 || musicIndex > nowPlaying.length-1)
+		{
+			console.log("trigger restart");
 			musicIndex = 0;
+		}
 	}
 }
 
