@@ -1,9 +1,5 @@
 
-var audioStream, analyser, source, audioCtx, canvasCtx, frequencyData;
-var audio;
-
-var lastMode;
-var lastKey;
+var audio, audioStream, analyser, source, audioCtx, canvasCtx, frequencyData;
 var cursorOnIndex = 0;
 
 function getCursorOnSongID(){
@@ -30,6 +26,7 @@ var rovApp = {
 
 	initialSelect : 0,
 	lastSelect : 0,
+	lastKey : -1,
 	clipboard : [],
 	lowerLoopLimit : 0,
 	upperLoopLimit : 0,
@@ -707,18 +704,18 @@ var rovApp = {
 			return new RegExp("^" + rule.split("*").join(".*") + "$").test(str);
 		}
 		function nonCaseSensitiveFit(i){
-			return (!caseSensitiveInput && matchRuleShort(this.library[i].toLowerCase(), tempSongName));
+			return (!caseSensitiveInput && matchRuleShort(rovApp.library[i].toLowerCase(), tempSongName));
 		}
 		function caseSensitiveFit(i){
-			return (caseSensitiveInput && matchRuleShort(this.library[i], tempSongName));
+			return (caseSensitiveInput && matchRuleShort(rovApp.library[i], tempSongName));
 		}
 
 		var caseSensitiveInput = !(tempSongName.toLowerCase() === tempSongName);
 		var songAdditionCount = 0;
 		for (var i = 0; i < this.library.length; i++){
-			if ((nonCaseSensitiveFit(i) || caseSensitiveFit(i)) && isNotPlaylist(this.library[i])){
-				this.genNewLi(this.library[i], cursorOnIndex+songAdditionCount);
-				this.songAdditionCount++;
+			if ((nonCaseSensitiveFit(i) || caseSensitiveFit(i)) && this.isNotPlaylist(rovApp.library[i])){
+				this.genNewLi(rovApp.library[i], cursorOnIndex+songAdditionCount);
+				songAdditionCount++;
 			}
 		}
 		if (this.afterCurrentlyPlaying() && !originally0){
@@ -773,13 +770,13 @@ window.onload = function (){
 			rovApp.moveCursorDown();
 		else if (event.which === 38)		// Up Arrow
 			rovApp.moveCursorUp();
-		else if(event.which === 65 && lastKey === 77)						// ma
+		else if(event.which === 65 && rovApp.lastKey === 77)						// ma
 			rovApp.moveCursorToCurrentlyPlaying();
 		else if (event.which === 71 && event.shiftKey)					// G
 			rovApp.moveCursorToLast();
-		else if (event.which === 71 && lastKey === 71)					// gg
+		else if (event.which === 71 && rovApp.lastKey === 71)					// gg
 			rovApp.moveCursorToFirst();
-		else if (event.which === 90 && lastKey === 90)					// zz
+		else if (event.which === 90 && rovApp.lastKey === 90)					// zz
 			rovApp.centerCursor();
 
 		else if (rovApp.mode["select"]){
@@ -797,7 +794,7 @@ window.onload = function (){
 				rovApp.copySelectedSongs();
 
 			else{
-				lastKey = event.which;
+				rovApp.lastKey = event.which;
 				return;
 			}
 			rovApp.setMode("normal");
@@ -832,7 +829,7 @@ window.onload = function (){
 			rovApp.clearAll();
 		else if (event.which === 88 && event.ctrlKey)			// Ctrl-x
 			rovApp.cutCursorOnSong();
-		else if (event.which === 89 && lastKey === 89)		// yy
+		else if (event.which === 89 && rovApp.lastKey === 89)		// yy
 			rovApp.copyCursorOnSong();
 		else if (event.which === 80)											// p
 			rovApp.pasteFromClipboard();
@@ -849,7 +846,7 @@ window.onload = function (){
 		else if (event.which === 189)												// -
 			rovApp.changeVolume(-1);
 
-		lastKey = event.which;
+		rovApp.lastKey = event.which;
 	});
 };
 
