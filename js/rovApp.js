@@ -35,6 +35,8 @@ ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
 canvas.width = 365*animation_size;
 canvas.height = 280*animation_size;
 
+
+/***	Graphics	***/
 function createStars(){
 	for (var i = 0; i < numOfStars; i++) {
 		stars.push({
@@ -100,8 +102,6 @@ function draw(){
 	}
 	ctx.stroke();
 }
-
-
 function updateStarLocations(dataArray){
 	for (var i = 0, x = stars.length; i < x; i++) {
 		var s = stars[i];
@@ -113,6 +113,38 @@ function updateStarLocations(dataArray){
 		if (s2.y < 38) s2.y = 38;
 	}
 }
+function toggleView(){
+	if (animation_size === 1){
+		animation_size = 3;
+		$(".rov_equalizer_container").css("right", "17vh");
+	}
+	else if (animation_size === 3){
+		animation_size = 1;
+		$(".rov_equalizer_container").css("right", "0vh");
+	}
+
+	canvas.width = 365*animation_size;
+	canvas.height = 280*animation_size;
+	for (var i = 0, x = stars.length; i < x; i++) {
+		stars[i].x = (i*8+10)*animation_size;
+		stars2[i].x = (i*8+10)*animation_size;
+	}
+}
+/***	Graphics	***/
+
+
+/***	Helper	***/
+function isNotPlaylist(filename){
+	return (filename.slice(-5) != ".json");
+}
+function nameInLibrary(songName){
+	return $.inArray(songName, library) != -1;	
+}
+/***	Helper	***/
+
+
+
+
 
 function loadLibrary(){
 	$.getJSON( "data/library.json", function( data ) {
@@ -125,16 +157,10 @@ function loadLibrary(){
 	});
 }
 
-function isNotPlaylist(filename){
-	return (filename.slice(-5) != ".json");
-}
-
 function init(){
 	audio = new Audio('data/mp3/'+nowPlaying[musicIndex]+".mp3");
 	audio.addEventListener('ended', function(){
 		changeMusicIndex(0);
-		if (musicIndex === nowPlaying.length)
-			musicIndex = 0;
 		loadNextTrack();
 		return;
 	})
@@ -148,7 +174,6 @@ function init(){
 	$(songOrder[musicIndex]+" div:nth-child(1)").css("display", "inline-block");
 	$(songOrder[musicIndex]+" div:nth-child(2)").css("margin-left", "0");
 	audio.volume = setVolume;
-	changeMusicIndex(1);
 
 	try {
 		audioCtx = new AudioContext();
@@ -221,6 +246,10 @@ window.onload = function (){
 	// enterInput();
 
 	document.addEventListener("keydown", function onEvent(event) {
+
+		console.log("musicIndex: " + musicIndex);
+		console.log("Cursor on: " + cursorOnIndex);
+		console.log("Cursor on song: " + nowPlaying[cursorOnIndex]);
 
 		// Key lag
 		if (event.key === "f" || event.key === "d"){
@@ -459,14 +488,14 @@ function deleteCursorOnSong(){
 	songOrder.splice(cursorOnIndex, 1);
 
 	refreshCursor();
-	if (musicIndex < cursorOnIndex+1){					// Currently playing on before deleted
+	if (musicIndex < cursorOnIndex){					// Currently playing on before deleted
 	}
 	else if (afterCurrentlyPlaying()){			// Currently playing on after deleted
 		changeMusicIndex(-1);
-		lastPlayed = musicIndex-1;
+		lastPlayed--;
 	}
-	else if (musicIndex === cursorOnIndex+1){		// Currently playing was on deleted
-		changeMusicIndex(-1);
+	else if (musicIndex === cursorOnIndex){		// Currently playing was on deleted
+		changeMusicIndex(0);
 		skipToNextTrack();
 	}
 }
@@ -475,9 +504,10 @@ var clipboard = [];
 function pasteFromClipboard(){
 	for (var i = 0; i < clipboard.length; i++)
 		genNewLi(clipboard[i], cursorOnIndex+i);
-	if (clipboard.length === 1 && cursorOnIndex+1 < musicIndex){
-		musicIndex++;
-		lastPlayed = cursorOnIndex+2;
+	if (cursorOnIndex < musicIndex){
+		var amount = clipboard.length;
+		musicIndex+=amount;
+		lastPlayed+=amount;
 	}
 }
 
@@ -559,10 +589,6 @@ function searchInput(){
 	}
 }
 
-function nameInLibrary(songName){
-	return $.inArray(songName, library) != -1;	
-}
-
 function skipToSection(numWord){
 	var num = parseInt(numWord);
 	if (num === 0)
@@ -581,18 +607,18 @@ function nextSong(){
 		skipToNextTrack();
 	}
 	else{
-		changeMusicIndex(0);
+		changeMusicIndex(1);
 		skipToNextTrack();
 	}
 }
 
 function previousSong(){
-		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").removeClass("loopedBox");
-		lowerLoopLimit--;
-		upperLoopLimit--;
-		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
+	$(songOrder[lowerLoopLimit]+" div:nth-child(2)").removeClass("loopedBox");
+	lowerLoopLimit--;
+	upperLoopLimit--;
+	$(songOrder[lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
 
-	changeMusicIndex(-2);
+	changeMusicIndex(-1);
 	skipToNextTrack();
 }
 
@@ -602,7 +628,7 @@ function skipToNextTrack(){
 }
 
 var lowerLoopLimit = 0;
-var upperLoopLimit = nowPlaying.length;
+var upperLoopLimit = nowPlaying.length-1;
 
 function updateLoopLimits(newStyle){
 	if (loopStyle["default"]){
@@ -614,15 +640,15 @@ function updateLoopLimits(newStyle){
 		}
 	}
 	var loopLimits = {
-		"default": [0, nowPlaying.length], 
-		"single": [cursorOnIndex-1, cursorOnIndex-1],
+		"default": [0, nowPlaying.length-1], 
+		"single": [cursorOnIndex, cursorOnIndex],
 		"multi": [getSelectStart(), getSelectEnd()+1]
 	};
 	lowerLoopLimit = loopLimits[newStyle][0];
 	upperLoopLimit = loopLimits[newStyle][1];
 
 	if (loopStyle["single"]){
-		$(songOrder[lowerLoopLimit+1]+" div:nth-child(2)").addClass("loopedBox");
+		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
 	}
 	else if (loopStyle["multi"]){
 		for (var i = lowerLoopLimit; i < upperLoopLimit; i++)
@@ -654,7 +680,9 @@ function changeMusicIndex(amount){
 			musicIndex = lowerLoopLimit;
 	}
 	else if (loopStyle["default"]){
-		if(musicIndex < 0 || musicIndex === nowPlaying.length)
+		console.log("musicIndex = "+musicIndex);
+		console.log(nowPlaying[musicIndex]);
+		if(musicIndex < 0 || musicIndex === nowPlaying.length-1)
 			musicIndex = 0;
 	}
 }
@@ -695,12 +723,10 @@ function moveCursorToCurrentlyPlaying(){
 	if (cursorOnIndex > musicIndex){
 		while(cursorOnIndex != musicIndex)
 			moveCursor(-1);
-		moveCursorUp();
 	}
 	else if (cursorOnIndex < musicIndex){
-		while(cursorOnIndex != musicIndex-1)
+		while(cursorOnIndex != musicIndex)
 			moveCursor(1);
-		refreshCursor();
 	}
 	centerCursor();
 }
@@ -716,24 +742,6 @@ function refreshCursor(){
 	}
 }
 
-function toggleView(){
-	if (animation_size === 1){
-		animation_size = 3;
-		$(".rov_equalizer_container").css("right", "17vh");
-	}
-	else if (animation_size === 3){
-		animation_size = 1;
-		$(".rov_equalizer_container").css("right", "0vh");
-	}
-
-	canvas.width = 365*animation_size;
-	canvas.height = 280*animation_size;
-	for (var i = 0, x = stars.length; i < x; i++) {
-		stars[i].x = (i*8+10)*animation_size;
-		stars2[i].x = (i*8+10)*animation_size;
-	}
-}
-
 function togglePlayPause(){
 	event.preventDefault();		// For whitespace
 	if (audio.paused)	audio.play();
@@ -741,45 +749,45 @@ function togglePlayPause(){
 }
 
 function playCursorOnSong(){
-	if (musicIndex === cursorOnIndex+1)
+	if (musicIndex === cursorOnIndex)
 		return;
 	musicIndex = cursorOnIndex;
 	skipToNextTrack();
 }
 
+
+/***	Select	***/
 var initialSelect, lastSelect;
 function startSelectMode(){
 	$(getCursorOnSongID()+" div:nth-child(2)").addClass("selectionBox");
 	initialSelect = cursorOnIndex;
 	lastSelect = cursorOnIndex;
 }
-
 function addToSelect(){
 	$(getCursorOnSongID()+" div:nth-child(2)").addClass("selectionBox");
 	lastSelect = cursorOnIndex;
 }
-
 function removePreviousFromSelect(previousIndex){
 	$(songOrder[previousIndex]+" div:nth-child(2)").removeClass("selectionBox");
 	lastSelect = cursorOnIndex;
 }
-
 function getSelectStart(){
 	return (initialSelect > lastSelect) ? lastSelect : initialSelect;
 }
 function getSelectEnd(){
 	return (initialSelect > lastSelect) ? initialSelect : lastSelect;
 }
-
 function removeAllSelect(){
 	for (var i = getSelectStart(); i < getSelectEnd()+1; i++)
 		$(songOrder[i]+" div:nth-child(2)").removeClass("selectionBox");
 	initialSelect = 0;
 	lastSelect = 0;
 }
+/***	Select	***/
+
 
 function afterCurrentlyPlaying(){
-	return (musicIndex > cursorOnIndex+1);
+	return (musicIndex > cursorOnIndex);
 }
 
 function wildcardInput(tempSongName, originally0){
