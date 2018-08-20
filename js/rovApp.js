@@ -15,7 +15,19 @@ var setVolume = 1.0;
 var lastPlayed = 0;
 var musicIndex = 0;
 var cursorOnIndex = musicIndex;
+var audioStream, analyser, source, audioCtx, canvasCtx, frequencyData;
 var audio = new Audio('data/mp3/'+nowPlaying[musicIndex]);
+
+var clipboard = [];
+var lowerLoopLimit = 0;
+var upperLoopLimit = nowPlaying.length-1;
+var initialSelect, lastSelect;
+var loopStyle = {
+	"default": true, 
+	"single": false,
+	"multi": false
+};
+
 
 var mode = {
 	"normal": true, 
@@ -29,11 +41,6 @@ var keyDownPressed = false;
 var immediatelyAfterSelectAll = false;
 
 
-
-
-ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
-canvas.width = 365*animation_size;
-canvas.height = 280*animation_size;
 
 
 /***	Graphics	***/
@@ -233,17 +240,16 @@ function setMode(newMode){
 }
 
 window.onload = function (){
-	var audioStream, analyser, source, audioCtx, canvasCtx, frequencyData, running = false;
 	var numberKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+
+	ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+	canvas.width = 365*animation_size;
+	canvas.height = 280*animation_size;
 
 	createStars();
 	loadLibrary();
 	setMode("normal");
 	setAutocomplete(library);
-
-	// var filename = "LiSA Catch the moment";
-	// var tempSongName = $("#songInput").val(filename);
-	// enterInput();
 
 	document.addEventListener("keydown", function onEvent(event) {
 
@@ -505,7 +511,6 @@ function clearAll(){
 		deleteCursorOnSong();
 }
 
-var clipboard = [];
 function pasteFromClipboard(){
 	for (var i = 0; i < clipboard.length; i++)
 		genNewLi(clipboard[i], cursorOnIndex+i);
@@ -629,9 +634,6 @@ function skipToNextTrack(){
 	loadNextTrack();
 }
 
-var lowerLoopLimit = 0;
-var upperLoopLimit = nowPlaying.length-1;
-
 function updateLoopLimits(newStyle){
 	if (loopStyle["default"]){
 		if (lowerLoopLimit === upperLoopLimit)
@@ -662,11 +664,6 @@ function updateLoopLimits(newStyle){
 	}
 }
 
-var loopStyle = {
-	"default": true, 
-	"single": false,
-	"multi": false
-};
 function setLoop(newStyle){
 	if (!loopStyle["default"])
 		newStyle = "default";
@@ -762,7 +759,6 @@ function playCursorOnSong(){
 
 
 /***	Select	***/
-var initialSelect, lastSelect;
 function startSelectMode(){
 	$(getCursorOnSongID()+" div:nth-child(2)").addClass("selectionBox");
 	initialSelect = cursorOnIndex;
