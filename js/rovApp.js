@@ -599,15 +599,13 @@ function skipToSection(numWord){
 function nextSong(){
 	if (loopStyle["single"]){
 		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").removeClass("loopedBox");
-		lowerLoopLimit++;
-		upperLoopLimit++;
+		changeMusicIndex(1);
 		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
 
-		changeMusicIndex(1);
 		skipToNextTrack();
 	}
 	else{
-		// changeMusicIndex(1);
+		changeMusicIndex(1);
 		skipToNextTrack();
 	}
 }
@@ -615,11 +613,11 @@ function nextSong(){
 function previousSong(){
 	if (loopStyle["single"]){
 		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").removeClass("loopedBox");
-		lowerLoopLimit--;
-		upperLoopLimit--;
+		// lowerLoopLimit--;
+		// upperLoopLimit--;
+		changeMusicIndex(-1);
 		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
 
-		changeMusicIndex(-1);
 		skipToNextTrack();
 	}
 	else{
@@ -639,7 +637,7 @@ var upperLoopLimit = nowPlaying.length-1;
 function updateLoopLimits(newStyle){
 	if (loopStyle["default"]){
 		if (lowerLoopLimit === upperLoopLimit)
-			$(songOrder[lowerLoopLimit+1]+" div:nth-child(2)").removeClass("loopedBox");
+			$(songOrder[lowerLoopLimit]+" div:nth-child(2)").removeClass("loopedBox");
 		else{
 			for (var i = lowerLoopLimit; i < upperLoopLimit+1; i++)
 				$(songOrder[i]+" div:nth-child(2)").removeClass("loopedBox");
@@ -677,19 +675,30 @@ function setLoop(newStyle){
 	console.log(loopStyle);
 
 	updateLoopLimits(newStyle);
-	musicIndex++;
+	// musicIndex++;
 }
 
 function changeMusicIndex(amount){
 	console.log("Old music index: "+musicIndex);
 	musicIndex+=amount;
-	if (!loopStyle["default"]){
-		console.log("Other loop");
-		if(musicIndex < lowerLoopLimit || musicIndex > upperLoopLimit)
-			musicIndex = lowerLoopLimit;
+	if (loopStyle["single"]){
+		lowerLoopLimit+=amount;
+		upperLoopLimit+=amount;
+		if (musicIndex < 0)
+			lowerLoopLimit = 0;
+		else if (musicIndex > nowPlaying.length-1)
+			lowerLoopLimit = 0;
+		musicIndex = lowerLoopLimit;
 	}
+
+	// else if (!loopStyle["default"]){
+	//   if(musicIndex < lowerLoopLimit || musicIndex > upperLoopLimit || musicIndex < 0 || musicIndex > nowPlaying.length-1){
+
+	//     lowerLoopLimit = nowPlaying.length-1;
+	//     musicIndex = lowerLoopLimit;
+	//   }
+	// }
 	else if (loopStyle["default"]){
-		console.log("Default loop");
 		console.log("New music index: "+musicIndex);
 		console.log("nowPlaying.length-1: "+(nowPlaying.length-1));
 		if(musicIndex < 0 || musicIndex > nowPlaying.length-1)
