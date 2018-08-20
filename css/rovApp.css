@@ -191,24 +191,27 @@ canvas {
   padding:0;
   border:0;
 	font-weight: bold;
-	color: #00FFF2;
 	border-radius: 4px;
-  width:12.5vh;
-  height:4vh;
+  width:14.5vh;
+  height:4.5vh;
   position:absolute;
 	left: 3vh;
 	bottom: 2vh;
 }
 
 .rov_info {
-  position:absolute;
-  top:0.5vh;
-  left:1vh;
+	text-align: center;
   width:100%;
-  font-size:2.5vh;
+  font-size:2.8vh;
 	font-family: 'Waiting for the Sunrise', cursive;
 	background-color: transparent;
+	/* color: #00FFF2; */
+	color: black;
+
+	padding-top: 1vh;
+	padding-bottom: 1vh;
 }
+
 
 .normalMode{background-color: rgba(184, 127, 184, 1);}
 .normalMode .rov_info{left:0.8vh;}

@@ -3,6 +3,8 @@
 clockApp.js
 	Message and sound when timer done
 
+rovApp
+	Find another shade of purple for lightline normal mode
 
 
 

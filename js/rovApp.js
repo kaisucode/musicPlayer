@@ -247,10 +247,6 @@ window.onload = function (){
 
 	document.addEventListener("keydown", function onEvent(event) {
 
-		// console.log("musicIndex: " + musicIndex);
-		// console.log(lowerLoopLimit);
-		// console.log(upperLoopLimit);
-
 		// Key lag
 		if (event.key === "f" || event.key === "d"){
 			if( keyDownPressed === true )	return false;
@@ -330,6 +326,8 @@ window.onload = function (){
 			playCursorOnSong();
 		else if (event.which === 8)												// Backspace
 			deleteCursorOnSong();
+		else if (event.which === 116)												// F5
+			clearAll();
 		else if (event.which === 88 && event.ctrlKey)			// Ctrl-x
 			cutCursorOnSong();
 		else if (event.which === 89 && lastKey === 89)		// yy
@@ -498,6 +496,13 @@ function deleteCursorOnSong(){
 		changeMusicIndex(0);
 		skipToNextTrack();
 	}
+}
+
+function clearAll(){
+	moveCursorToFirst();
+	var totalSongs = nowPlaying.length
+	for (var i = 0; i < totalSongs; i++)
+		deleteCursorOnSong();
 }
 
 var clipboard = [];
