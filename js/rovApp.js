@@ -646,12 +646,14 @@ function updateLoopLimits(newStyle){
 
 	if (loopStyle["single"]){
 		$(songOrder[lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
-		musicIndex = cursorOnIndex;
+		musicIndex = lowerLoopLimit;
 		skipToNextTrack();
 	}
 	else if (loopStyle["multi"]){
 		for (var i = lowerLoopLimit; i < upperLoopLimit+1; i++)
 			$(songOrder[i]+" div:nth-child(2)").addClass("loopedBox");
+		musicIndex = lowerLoopLimit;
+		skipToNextTrack();
 	}
 }
 
@@ -667,10 +669,8 @@ function setLoop(newStyle){
 	for (var key in loopStyle)
 		loopStyle[key] = false;
 	loopStyle[newStyle] = true;
-	console.log(loopStyle);
 
 	updateLoopLimits(newStyle);
-	// musicIndex++;
 }
 
 function changeMusicIndex(amount){
@@ -680,14 +680,11 @@ function changeMusicIndex(amount){
 			musicIndex = 0;
 	else if (loopStyle["single"])
 		musicIndex = lowerLoopLimit;
-
-	// else if (!loopStyle["default"]){
-	//   if(musicIndex < lowerLoopLimit || musicIndex > upperLoopLimit || musicIndex < 0 || musicIndex > nowPlaying.length-1){
-
-	//     lowerLoopLimit = nowPlaying.length-1;
-	//     musicIndex = lowerLoopLimit;
-	//   }
-	// }
+	else if (loopStyle["multi"]){
+		if(musicIndex < lowerLoopLimit || musicIndex > upperLoopLimit){
+			musicIndex = lowerLoopLimit;
+		}
+	}
 }
 
 function moveCursorToLast(){
