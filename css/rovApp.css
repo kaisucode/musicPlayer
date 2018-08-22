@@ -10,6 +10,27 @@
 	outline:none;
 }
 
+
+
+
+
+
+
+.rovApp .rov_inputbox{
+	display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .ui-autocomplete {
 	color: white;
 	padding: 5px;
@@ -18,7 +39,7 @@
 	line-height: 3.5vh;
 }
 
-.rov_inputbox{
+.rovAppS .rov_inputbox{
 	background-color: black;
 	border: 4px solid pink;
 	position: absolute;
@@ -28,7 +49,7 @@
 	padding: 5px;
 }
 
-#songInput{
+.rovAppS #songInput{
 	border: none;
 	width: 100%;
 	font-size: 3.5vh;
@@ -109,7 +130,15 @@
 	padding-right: 5px;
 	border-top: 4px solid transparent;
 	border-bottom: 6px solid transparent;
-	display: none;
+
+	/* margin-left: 0.5vh; */
+	/* margin-right: 0.5vh; */
+	/* padding-left: 1vh; */
+	/* padding-right: 1vh; */
+	/* border-top: 2vh solid transparent; */
+	/* border-bottom: 2vh solid transparent; */
+	/* background-color: blue; */
+	/* display: none; */
 }
 
 /* Scrollbar styles */
@@ -186,7 +215,7 @@ canvas {
   animation-iteration-count: infinite;
 }
 
-#rov_lightline { 
+.rovAppS #rov_lightline { 
   margin:0;
   padding:0;
   border:0;
@@ -199,7 +228,7 @@ canvas {
 	bottom: 2vh;
 }
 
-.rov_info {
+.rovAppS .rov_info {
 	text-align: center;
   width:100%;
   font-size:2.8vh;

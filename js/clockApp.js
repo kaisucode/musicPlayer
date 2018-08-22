@@ -259,13 +259,13 @@ $(document).ready(function() {
 			inApp["time"] = false;
 			stopApp("clockApp");
 		}
+		else if (inApp["time"]){
+			clockApp.behaviorDetermine();
+		}
 		else if (event.key === "T"){
 			inApp["time"] = true;
 			startApp("clockApp");
 			clockApp.refreshClockApp();
-		}
-		else if (inApp["time"]){
-			clockApp.behaviorDetermine();
 		}
 	});
 });

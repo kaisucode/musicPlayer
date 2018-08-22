@@ -1,4 +1,18 @@
 
+inApp = {
+	"rov": false
+};
+
+function stopApp(appName){
+	$("#"+appName).removeClass(appName+"S");
+	$("#"+appName).addClass(appName);
+}
+function startApp(appName){
+	$("#"+appName).removeClass(appName);
+	$("#"+appName).addClass(appName+"S");
+}
+
+
 var audio, audioStream, analyser, source, audioCtx, canvasCtx, frequencyData;
 var cursorOnIndex = 0;
 
@@ -728,25 +742,9 @@ var rovApp = {
 		}
 	},
 
-
-}
-
-
-
-
-
-
-
-
-window.onload = function (){
-	var numberKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-
-	rovApp.appInitialization();
-
-
-	document.addEventListener("keydown", function onEvent(event) {
-
+	behaviorDetermine(){
 		// Key lag
+		var numberKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 		if (event.key === "f" || event.key === "d"){
 			if( rovApp.keyDownPressed === true )	return false;
 			rovApp.keyDownPressed = true;
@@ -847,6 +845,34 @@ window.onload = function (){
 			rovApp.changeVolume(-1);
 
 		rovApp.lastKey = event.which;
+	}
+}
+
+
+
+
+
+
+
+
+window.onload = function (){
+
+	rovApp.appInitialization();
+	inApp["rov"] = true;
+	startApp("rovApp");
+
+	document.addEventListener("keydown", function onEvent(event) {
+		if (event.key === "q") {
+			inApp["rov"] = false;
+			stopApp("rovApp");
+		}
+		else if (inApp["rov"]){
+			rovApp.behaviorDetermine();
+		}
+		else if (event.key === "m"){
+			inApp["rov"] = true;
+			startApp("rovApp");
+		}
 	});
 };
 
