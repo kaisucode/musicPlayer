@@ -213,7 +213,8 @@ canvas {
 }
 
 
-.normalMode{background-color: rgba(184, 127, 184, 1);}
+/* .normalMode{background-color: rgba(184, 127, 184, 1);} */
+.normalMode{background-color: #AF88FF;}
 .normalMode .rov_info{left:0.8vh;}
 
 .enterMode{background-color: rgba(51, 204, 51, 1);}
