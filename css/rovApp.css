@@ -19,6 +19,12 @@
 .rovApp .rov_inputbox{
 	display: none;
 }
+.rovApp .rov_sticky{
+	display: none;
+}
+.rovApp .rov_scrollBox{
+	display: none;
+}
 
 
 

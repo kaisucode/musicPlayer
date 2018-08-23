@@ -843,6 +843,12 @@ var rovApp = {
 			rovApp.changeVolume(1);
 		else if (event.which === 189)												// -
 			rovApp.changeVolume(-1);
+		else if (event.key === "q") {
+			if (this.animation_size === 3)
+				this.toggleView();
+			inApp["rov"] = false;
+			stopApp("rovApp");
+		}
 
 		rovApp.lastKey = event.which;
 	}
@@ -858,15 +864,11 @@ var rovApp = {
 window.onload = function (){
 
 	rovApp.appInitialization();
-	inApp["rov"] = true;
-	startApp("rovApp");
+	// inApp["rov"] = true;
+	// startApp("rovApp");
 
 	document.addEventListener("keydown", function onEvent(event) {
-		if (event.key === "q") {
-			inApp["rov"] = false;
-			stopApp("rovApp");
-		}
-		else if (inApp["rov"]){
+		if (inApp["rov"]){
 			rovApp.behaviorDetermine();
 		}
 		else if (event.key === "m"){
