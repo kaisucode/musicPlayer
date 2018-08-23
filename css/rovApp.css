@@ -47,7 +47,7 @@
 	/* line-height: 2vh; */
 }
 
-.rovAppS .rov_inputbox{
+.rovAppStart .rov_inputbox{
 	background-color: black;
 	border: 0.5vh solid pink;
 	position: absolute;
@@ -57,7 +57,7 @@
 	padding: 0.7vh;
 }
 
-.rovAppS #songInput{
+.rovAppStart #songInput{
 	border: none;
 	width: 100%;
 	font-size: 3.5vh;
@@ -215,7 +215,7 @@ canvas {
   animation-iteration-count: infinite;
 }
 
-.rovAppS #rov_lightline { 
+.rovAppStart #rov_lightline { 
   margin:0;
   padding:0;
   border:0;
@@ -228,7 +228,7 @@ canvas {
 	bottom: 2vh;
 }
 
-.rovAppS .rov_info {
+.rovAppStart .rov_info {
 	text-align: center;
   width:100%;
   font-size:2.8vh;

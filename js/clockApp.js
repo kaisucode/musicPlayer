@@ -6,12 +6,12 @@ inApp = {
 };
 
 function stopApp(appName){
-	$("#"+appName).removeClass(appName+"S");
+	$("#"+appName).removeClass(appName+"Start");
 	$("#"+appName).addClass(appName);
 }
 function startApp(appName){
 	$("#"+appName).removeClass(appName);
-	$("#"+appName).addClass(appName+"S");
+	$("#"+appName).addClass(appName+"Start");
 }
 
 

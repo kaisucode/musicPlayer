@@ -3,13 +3,23 @@ inApp = {
 	"rov": false
 };
 
+apps = ["clockApp", "rovApp"];
+
 function stopApp(appName){
-	$("#"+appName).removeClass(appName+"S");
+	$("#"+appName).removeClass(appName+"Start");
 	$("#"+appName).addClass(appName);
+	apps.forEach(function(app){
+		if (app!=appName)
+			$("#"+app).css("display", "block");
+	});
 }
 function startApp(appName){
 	$("#"+appName).removeClass(appName);
-	$("#"+appName).addClass(appName+"S");
+	$("#"+appName).addClass(appName+"Start");
+	apps.forEach(function(app){
+		if (app!=appName)
+			$("#"+app).css("display", "none");
+	});
 }
 
 
