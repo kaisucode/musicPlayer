@@ -6,38 +6,38 @@
 }
 
 
-.clockApp .menu{
+.timeApp .menu{
 	display: none;
 }
-.clockApp{
+.timeApp{
 	position: absolute;
 	top: 40vh;
 	left: 10vh;
 }
-.clockApp .clockGroup {
+.timeApp .clockGroup {
 	display: block !important;
 	width: fit;
 	text-align: center;
 	font-size: 20vh;
 	color: #00FFF2;
 }
-.clockApp .clockGroup #current_date{
+.timeApp .clockGroup #current_date{
 	font-size: 8vh;
 }
-.clockApp .timerGroup{
+.timeApp .timerGroup{
 	display: inline !important;
 	float: left;
 }
-.clockApp .timerGroup .showTimer{
+.timeApp .timerGroup .showTimer{
 	display: block;
 	font-size: 3vh;
 	color: pink;
 	margin-left: 1.5vh;
 }
-.clockApp .timerGroup .inputTimer{
+.timeApp .timerGroup .inputTimer{
 	display: none !important;
 }
-.clockApp .stopwatchGroup{
+.timeApp .stopwatchGroup{
 	display: inline !important;
 	float: right;
 	font-size: 3vh;
@@ -51,39 +51,39 @@
 
 
 
-.clockAppStart{
+.timeAppStart{
 	text-align: center;
 }
-.clockAppStart .menu_container{
+.timeAppStart .menu_container{
 	position: absolute;
 	top: 70vh;
 	width: 96%;
 }
-.clockAppStart .menu{
+.timeAppStart .menu{
 	text-align: center;
 }
-.clockAppStart .menu li{
+.timeAppStart .menu li{
 	display: inline;
 }
-.clockAppStart .clockGroup {
+.timeAppStart .clockGroup {
 	margin-top: 30vh;
 	font-size: 200px;
 	color: #00FFF2;
 }
-.clockAppStart .clockGroup #current_date{
+.timeAppStart .clockGroup #current_date{
 	font-size: 10vh;
 }
-.clockAppStart .timerGroup .showTimer{
+.timeAppStart .timerGroup .showTimer{
 	font-size: 8vh;
 	color: pink;
 	margin-top: 45vh;
 }
-.clockAppStart .timerGroup .inputTimer{
+.timeAppStart .timerGroup .inputTimer{
 	color: white;
 	font-size: 8vh;
 	margin-top: 45vh;
 }
-.clockAppStart .timerGroup input{
+.timeAppStart .timerGroup input{
 	border-radius: 12px;
 	background-color: #00FFF2; 
 	color: black;
@@ -98,19 +98,19 @@
 	margin: 4px 12px;
 	/* cursor: pointer; */
 }
-.clockAppStart .timerGroup input:focus{
+.timeAppStart .timerGroup input:focus{
 	color: #00FFF2; 
 	background-color: black;
 	outline: none;
 }
 
-.clockAppStart .stopwatchGroup{
+.timeAppStart .stopwatchGroup{
 	margin-top: 45vh;
 	font-size: 8vh;
 	color: #00FFF2;
 }
 
-.clockAppStart .menu button {
+.timeAppStart .menu button {
 	border-radius: 2.8vh;
 	width: 200px;
 	padding: 20px;
@@ -125,7 +125,7 @@
 	background-color: black;
 	border: 0.4vh solid #00FFF2;
 }
-.clockAppStart .clockAppButtonSelected {
+.timeAppStart .clockAppButtonSelected {
 	color: black !important;
 	background-color: #00FFF2 !important; 
 	border: 0.4vh solid black !important;

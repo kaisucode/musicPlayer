@@ -3,7 +3,7 @@ inApp = {
 	"rov": false
 };
 
-apps = ["clockApp", "rovApp"];
+apps = ["timeApp", "rovApp"];
 
 function stopApp(appName){
 	$("#"+appName).removeClass(appName+"Start");
