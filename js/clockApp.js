@@ -213,7 +213,11 @@ var clockApp  = {
 	},
 
 	behaviorDetermine(){
-		if (event.key === "s" && clockApp.focusPage["stopwatch"]) 
+		if (event.key === "q") {
+			inApp["time"] = false;
+			stopApp("clockApp");
+		}
+		else if (event.key === "s" && clockApp.focusPage["stopwatch"]) 
 			clockApp.toggleStopwatch();
 		else if (event.key === "c" && clockApp.focusPage["stopwatch"])
 			clockApp.clearStopwatch();
@@ -255,11 +259,7 @@ $(document).ready(function() {
 	clockApp.startTime();
 
 	document.addEventListener("keydown", function onEvent(event) {
-		if (event.key === "q") {
-			inApp["time"] = false;
-			stopApp("clockApp");
-		}
-		else if (inApp["time"]){
+		if (inApp["time"]){
 			clockApp.behaviorDetermine();
 		}
 		else if (event.key === "T"){

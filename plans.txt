@@ -4,9 +4,7 @@ clockApp.js
 	Message and sound when timer done
 
 rovApp
-	Turn into class
 	Intergrate into clockApp.js
-	Find another shade of purple for lightline normal mode
 
 
 

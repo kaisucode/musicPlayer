@@ -742,7 +742,7 @@ var rovApp = {
 		}
 	},
 
-	behaviorDetermine(){
+	outOfAppBehaviorDetermine(){
 		// Key lag
 		var numberKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 		if (event.key === "f" || event.key === "d"){
@@ -750,6 +750,26 @@ var rovApp = {
 			rovApp.keyDownPressed = true;
 			setTimeout(function() { rovApp.keyDownPressed = false }, 200);
 		}
+		if (event.which === 70)		// f
+			rovApp.nextSong();
+		else if (event.which === 68)		// d
+			rovApp.previousSong();
+		else if (numberKeys.includes(event.key))						// 1~10
+			rovApp.skipToSection(event.key);
+		else if (event.which === 186 && !event.shiftKey)		// ;
+			rovApp.audio.currentTime -= 3;		// Move back
+		else if (event.which === 186 && event.shiftKey)			// :
+			rovApp.audio.currentTime += 3;		// Move forward
+		else if (event.which === 187 && event.shiftKey)			// +
+			rovApp.changeVolume(1);
+		else if (event.which === 189)												// -
+			rovApp.changeVolume(-1);
+		else if (event.which === 32)	// Space
+			rovApp.togglePlayPause();
+	},
+
+	behaviorDetermine(){
+		var numberKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
 		if (rovApp.mode["enter"] || rovApp.mode["search"]){
 			if (event.which === 27)					// Esc
@@ -809,13 +829,8 @@ var rovApp = {
 
 		else if (event.which === 86)											// v
 			rovApp.toggleView();
-		else if (event.which === 32 || event.key === "s")	// Space/s
+		else if (event.key === "s")	// Space/s
 			rovApp.togglePlayPause();
-
-		else if (event.which === 70)		// f
-			rovApp.nextSong();
-		else if (event.which === 68)		// d
-			rovApp.previousSong();
 
 		else if (event.which === 65 && event.ctrlKey)			// Ctrl-a
 			rovApp.selectAll();
@@ -832,23 +847,14 @@ var rovApp = {
 		else if (event.which === 80)											// p
 			rovApp.pasteFromClipboard();
 
-		else if (numberKeys.includes(event.key))						// 1~10
-			rovApp.skipToSection(event.key);
-		else if (event.which === 186 && !event.shiftKey)		// ;
-			rovApp.audio.currentTime -= 3;		// Move back
-		else if (event.which === 186 && event.shiftKey)			// :
-			rovApp.audio.currentTime += 3;		// Move forward
-
-		else if (event.which === 187 && event.shiftKey)			// +
-			rovApp.changeVolume(1);
-		else if (event.which === 189)												// -
-			rovApp.changeVolume(-1);
 		else if (event.key === "q") {
 			if (this.animation_size === 3)
 				this.toggleView();
 			inApp["rov"] = false;
 			stopApp("rovApp");
 		}
+		else
+			rovApp.outOfAppBehaviorDetermine(); 
 
 		rovApp.lastKey = event.which;
 	}
@@ -864,8 +870,6 @@ var rovApp = {
 window.onload = function (){
 
 	rovApp.appInitialization();
-	// inApp["rov"] = true;
-	// startApp("rovApp");
 
 	document.addEventListener("keydown", function onEvent(event) {
 		if (inApp["rov"]){
@@ -874,6 +878,9 @@ window.onload = function (){
 		else if (event.key === "m"){
 			inApp["rov"] = true;
 			startApp("rovApp");
+		}
+		else{
+			rovApp.outOfAppBehaviorDetermine();
 		}
 	});
 };
