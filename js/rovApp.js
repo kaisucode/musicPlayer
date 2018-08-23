@@ -1,28 +1,4 @@
 
-inApp = {
-	"rov": false
-};
-
-apps = ["timeApp", "rovApp"];
-
-function stopApp(appName){
-	$("#"+appName).removeClass(appName+"Start");
-	$("#"+appName).addClass(appName);
-	apps.forEach(function(app){
-		if (app!=appName)
-			$("#"+app).css("display", "block");
-	});
-}
-function startApp(appName){
-	$("#"+appName).removeClass(appName);
-	$("#"+appName).addClass(appName+"Start");
-	apps.forEach(function(app){
-		if (app!=appName)
-			$("#"+app).css("display", "none");
-	});
-}
-
-
 var audio, audioStream, analyser, source, audioCtx, canvasCtx, frequencyData;
 var cursorOnIndex = 0;
 
@@ -870,28 +846,4 @@ var rovApp = {
 	}
 }
 
-
-
-
-
-
-
-
-window.onload = function (){
-
-	rovApp.appInitialization();
-
-	document.addEventListener("keydown", function onEvent(event) {
-		if (inApp["rov"]){
-			rovApp.behaviorDetermine();
-		}
-		else if (event.key === "m"){
-			inApp["rov"] = true;
-			startApp("rovApp");
-		}
-		else{
-			rovApp.outOfAppBehaviorDetermine();
-		}
-	});
-};
 

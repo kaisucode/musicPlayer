@@ -1,20 +1,6 @@
 
 var byId = function( id ) { return document.getElementById( id ); };
 
-inApp = {
-	"time": false
-};
-
-function stopApp(appName){
-	$("#"+appName).removeClass(appName+"Start");
-	$("#"+appName).addClass(appName);
-}
-function startApp(appName){
-	$("#"+appName).removeClass(appName);
-	$("#"+appName).addClass(appName+"Start");
-}
-
-
 var timeApp  = {
 	// stopwatchInterval,
 	// timerInterval,
@@ -254,19 +240,4 @@ var timeApp  = {
 		}
 }
 
-
-$(document).ready(function() {
-	timeApp.startTime();
-
-	document.addEventListener("keydown", function onEvent(event) {
-		if (inApp["time"]){
-			timeApp.behaviorDetermine();
-		}
-		else if (event.key === "T"){
-			inApp["time"] = true;
-			startApp("timeApp");
-			timeApp.refreshTimeApp();
-		}
-	});
-});
 
