@@ -34,7 +34,7 @@ fandomApp = {
 	},
 
 	showSlides() {
-    if (fandomApp.slideIndex >= fandomApp.numOfImgs-1)
+    if (fandomApp.slideIndex >= fandomApp.numOfImgs)
 			fandomApp.slideIndex = 0;
     $("#fandom_container").html("<img src='data/fandom/"+fandomApp.fandomImages[fandomApp.slideIndex]+"'/>");
     fandomApp.slideIndex++;

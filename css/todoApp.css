@@ -15,11 +15,12 @@
 	margin-right: 0.7vh;
 
 	text-align: center;
-	font-size: 2vh;
+	font-size: 2.3vh;
 	word-wrap: break-word;
 }
 
 marquee{
+	margin-top: 0.6vh;
 	background-color: black;
 	border: 0.3vh solid #00FFF2;
 	border-radius: 0.5vh;
@@ -28,6 +29,7 @@ marquee{
 	font-size: 2.2vh;
 }
 #hw_container{
+	margin-top: 0.6vh;
 	background-color: black;
 	border: 0.3vh solid #00FFF2;
 	border-radius: 0.5vh;
@@ -60,12 +62,14 @@ marquee{
 	height: 30.3vh;
 	border-radius: 0.5vh;
 	padding-top: 0.3vh;
+	margin-top: 0.6vh;
 }
 
 .art marquee{
 	width: 20.4vh;
 	height: 28vh;
 	border: none;
+	margin-top: 0vh;
 }
 
 #art_title{
