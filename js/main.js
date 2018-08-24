@@ -1,10 +1,11 @@
 
 inApp = {
 	"time": false,
-	"rov": false
+	"rov": false,
+	"calendar": false
 };
 
-apps = ["timeApp", "rovApp", "todoApp"];
+apps = ["timeApp", "rovApp", "todoApp", "calendarApp"];
 
 function stopApp(appName){
 	$("#"+appName).removeClass(appName+"Start");
@@ -29,6 +30,7 @@ window.onload = function (){
 	timeApp.startTime();
 	rovApp.appInitialization();
 	todoApp.appInitialization();
+	calendarApp.appInitialization();
 
 	document.addEventListener("keydown", function onEvent(event) {
 		if (inApp["time"]){
@@ -36,6 +38,9 @@ window.onload = function (){
 		}
 		else if (inApp["rov"]){
 			rovApp.behaviorDetermine();
+		}
+		else if (inApp["calendar"]){
+			calendarApp.behaviorDetermine();
 		}
 		else if (event.key === "T"){
 			inApp["time"] = true;
@@ -46,22 +51,9 @@ window.onload = function (){
 			inApp["rov"] = true;
 			startApp("rovApp");
 		}
-		else if (event.key === "u"){
-			function readTextFile(file){
-				var rawFile = new XMLHttpRequest();
-				rawFile.open("GET", file, false);
-				rawFile.onreadystatechange = function (){
-					if(rawFile.readyState === 4){
-						if(rawFile.status === 200 || rawFile.status == 0){
-							var allText = rawFile.responseText;
-							console.log(allText);
-							alert(allText);
-						}
-					}
-				}
-				rawFile.send(null);
-			}
-			readTextFile("README.txt");
+		else if (event.key === "c"){
+			inApp["calendar"] = true;
+			startApp("calendarApp");
 		}
 		else
 			rovApp.outOfAppBehaviorDetermine();

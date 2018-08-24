@@ -833,7 +833,7 @@ var rovApp = {
 		else if (event.which === 80)											// p
 			rovApp.pasteFromClipboard();
 
-		else if (event.key === "q") {
+		else if (event.key === "q") {		// Quit
 			if (this.animation_size === 3)
 				this.toggleView();
 			inApp["rov"] = false;

@@ -1,0 +1,76 @@
+
+.calendar_container{
+	color: white;
+	text-align: center;
+}
+
+.calendarApp{
+	position: absolute;
+	top: 1vh;
+	left: 10vh;
+}
+
+.calendarApp .calendar_container{
+	height: 33.5vh;
+	border: 0.4vh solid pink;
+}
+
+
+.calendarApp .monthYear_container {
+	color: pink;
+	font-size: 2.5vh;
+	font-weight: bold;
+	line-height: 5vh;
+}
+.calendarApp .row{
+	color: white;
+	width: 36vh;
+}
+.calendarApp td {
+  width: 3.5vh;
+  height: 3vh;
+  text-align: center;
+  line-height: 4vh !important;
+  font-size: 1.8vh;
+  font-family: monospace;
+}
+
+
+
+.calendarAppStart .monthYear_container {
+	color: pink;
+	font-size: 5vh;
+	font-weight: bold;
+}
+.calendarAppStart .row{
+	color: white;
+	width: 70vh;
+}
+.calendarAppStart td {
+  width: 8vh;
+  height: 10vh;
+  text-align: center;
+  line-height: 10vh !important;
+  font-size: 3vh;
+  font-family: monospace;
+}
+
+#calendarApp tr:nth-child(1) td:nth-child(4){
+	color: pink;
+	font-weight: bold;
+	text-decoration: underline;
+  font-size: 3.6vh;
+}
+#calendarApp tr:nth-child(1) td:nth-child(5){
+	color: pink;
+	font-weight: bold;
+	text-decoration: underline;
+  font-size: 3.6vh;
+}
+#calendarApp tr:nth-child(1) td:nth-child(6){
+	color: pink;
+	font-weight: bold;
+	text-decoration: underline;
+  font-size: 3.6vh;
+}
+
