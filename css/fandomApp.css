@@ -1,0 +1,18 @@
+
+#fandom_container{
+	position: absolute;
+	bottom: 3vh;
+	left: 80vh;
+	
+
+	width: 65vh;
+	height: 50vh;
+	/* border: 1vh solid white; */
+	text-align: center;
+}
+
+img{
+	width: 65vh;
+	height: auto;
+}
+

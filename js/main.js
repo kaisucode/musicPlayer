@@ -5,7 +5,7 @@ inApp = {
 	"calendar": false
 };
 
-apps = ["timeApp", "rovApp", "todoApp", "calendarApp"];
+apps = ["timeApp", "rovApp", "todoApp", "calendarApp", "fandomApp"];
 
 function stopApp(appName){
 	$("#"+appName).removeClass(appName+"Start");
@@ -31,6 +31,7 @@ window.onload = function (){
 	rovApp.appInitialization();
 	todoApp.appInitialization();
 	calendarApp.appInitialization();
+	fandomApp.appInitialization();
 
 	document.addEventListener("keydown", function onEvent(event) {
 		if (inApp["time"]){
