@@ -1,23 +1,13 @@
 
 todoApp
-	hw: Switch between pages (a day per page)
-	cs: default marquee
-	ee: default marquee
-	art: default marquee, gradient text
 
-	default marquee
-	switch pages
-
-clockApp.js
+clockApp
 	Message and sound when timer done
+	Add alarm
 
 rovApp
 
 
-
-
-Timer
-Add alarm
 
 Calandar
 https://codepen.io/odran037/pen/RrjjOr
