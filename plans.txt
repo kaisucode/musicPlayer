@@ -1,10 +1,17 @@
 
+todoApp
+	hw: Switch between pages (a day per page)
+	cs: default marquee
+	ee: default marquee
+	art: default marquee, gradient text
+
+	default marquee
+	switch pages
 
 clockApp.js
 	Message and sound when timer done
 
 rovApp
-	Intergrate into clockApp.js
 
 
 
@@ -59,6 +66,13 @@ Shortcuts (<,>)
 	-Projects
 
 Todo list slideshow (<t>)
+	-HW
+	-CS
+	-EE
+	-Art
+	https://stackoverflow.com/a/14446538
+
+https://www.google.com/search?q=transparent+tech+frame&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj1hfvdzYTdAhWSPN8KHSngCc8Q_AUICigB&biw=1478&bih=739#imgdii=J-pQNSV13waMrM:&imgrc=WYkLc991GdKVXM:
 
 
 

@@ -4,7 +4,7 @@ inApp = {
 	"rov": false
 };
 
-apps = ["timeApp", "rovApp"];
+apps = ["timeApp", "rovApp", "todoApp"];
 
 function stopApp(appName){
 	$("#"+appName).removeClass(appName+"Start");
@@ -44,6 +44,23 @@ window.onload = function (){
 		else if (event.key === "m"){
 			inApp["rov"] = true;
 			startApp("rovApp");
+		}
+		else if (event.key === "u"){
+			function readTextFile(file){
+				var rawFile = new XMLHttpRequest();
+				rawFile.open("GET", file, false);
+				rawFile.onreadystatechange = function (){
+					if(rawFile.readyState === 4){
+						if(rawFile.status === 200 || rawFile.status == 0){
+							var allText = rawFile.responseText;
+							console.log(allText);
+							alert(allText);
+						}
+					}
+				}
+				rawFile.send(null);
+			}
+			readTextFile("README.txt");
 		}
 		else
 			rovApp.outOfAppBehaviorDetermine();
