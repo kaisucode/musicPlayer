@@ -27,6 +27,13 @@ marquee{
 	height: 28vh;
 	padding: 1vh;
 }
+#hw_container{
+	border: 0.3vh solid #00FFF2;
+	border-radius: 0.5vh;
+
+	height: 28vh;
+	padding: 1vh;
+}
 
 .cs{
 	color: #00FFF2;
