@@ -16,23 +16,23 @@
 	margin-right: 0.7vh;
 
 	text-align: center;
-	font-size: 2.2vh;
+	font-size: 2vh;
 	word-wrap: break-word;
 }
 
 marquee{
 	border: 0.3vh solid #00FFF2;
 	border-radius: 0.5vh;
-
 	height: 28vh;
 	padding: 1vh;
+	font-size: 2.2vh;
 }
 #hw_container{
 	border: 0.3vh solid #00FFF2;
 	border-radius: 0.5vh;
-
 	height: 28vh;
 	padding: 1vh;
+	font-size: 2.2vh;
 }
 
 .cs{
@@ -47,7 +47,11 @@ marquee{
 	color: #39ff14;
 }
 
-.art{
+#hw_day{
+	font-size: 3vh;
+	font-weight: bold;
+	text-decoration: underline;
+	margin-bottom: 1.2vh;
 }
 
 #art_title{

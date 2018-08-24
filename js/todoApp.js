@@ -21,28 +21,37 @@ var todoApp = {
 
 		var hw_content = this.readTextFile("data/todo/hw.txt");
 		var parsed_hw_content = hw_content.split("\n");
-		console.log(parsed_hw_content);
+
 		var final_hw_content = [];
 		var tempStr = "";
+		var firstDay = true;
+		var rightAfterHr = true;
+		var daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+
 		parsed_hw_content.forEach(function(line){
-			if (line == ""){
-				tempStr+="\n";
+			if (firstDay && line == "<hr>")
+				firstDay = false;
+			else if (line == "<hr>"){
 				final_hw_content.push(tempStr);
 				tempStr = "";
+				rightAfterHr = true;
 			}
-			else{
+			else if (rightAfterHr)
+				rightAfterHr = false;
+			else
 				tempStr+=(line+"\n");
-			}
 		});
-		console.log(final_hw_content);
+		final_hw_content.push(tempStr);
 
+		byId('hw_day').innerText = daysOfTheWeek[0];
 		byId('hw_content').innerText = final_hw_content[0];
 		var i = 1;
 		var hw_content_length = final_hw_content.length;
 		setInterval(function() {
+			byId('hw_day').innerText = daysOfTheWeek[i];
 			byId('hw_content').innerText = final_hw_content[i];
-			(i >= hw_content_length) ? i=0 : i++;
-		}, 2000);
+			(i >= hw_content_length-1) ? i=0 : i++;
+		}, 1500);
 
 	}	
 }
