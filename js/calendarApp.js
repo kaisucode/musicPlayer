@@ -21,8 +21,10 @@ calendarApp = {
       months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     };
     var start = new Date(d.getFullYear(), d.getMonth()).getDay();
+		var today = new Date();
     var cal = [];
     var day = 1;
+
     for (var i = 0; i <= 6; i++) {
       cal.push(['<tr>']);
       for (var j = 0; j < 7; j++) {
@@ -33,8 +35,10 @@ calendarApp = {
 				else {
           if (i === 1 && j < start) 
             cal[i].push('<td>&nbsp;</td>');
+					else if (today.getDate() == day && today.getMonth() == d.getMonth() && today.getYear() == d.getYear())
+            cal[i].push('<td class="today">' + day++ + '</td>');
 					else 
-            cal[i].push('<td class="day">' + day++ + '</td>');
+            cal[i].push('<td>' + day++ + '</td>');
         }
       }
       cal[i].push('</tr>');
@@ -43,13 +47,8 @@ calendarApp = {
       return a.concat(b);
     }, []).join('');
     $('table').append(cal);
-    $('#month').text(details.months[d.getMonth()]);
-    $('#year').text(d.getFullYear());
-    $('td.day').mouseover(function() {
-      $(this).addClass('hover');
-    }).mouseout(function() {
-      $(this).removeClass('hover');
-    });
+    $('#calendar_month').text(details.months[d.getMonth()]);
+    $('#calendar_year').text(d.getFullYear());
   },
 
 
@@ -57,8 +56,8 @@ calendarApp = {
 	resetMonth(){
 		this.currentDate = new Date();
 		this.generateCalendar(this.currentDate);
-		this.previousMonth();
 		this.nextMonth();
+		this.previousMonth();
 	},
 	previousMonth(){
     $('table').text('');
@@ -72,7 +71,8 @@ calendarApp = {
     }
 	},
 	nextMonth(){
-    $('table').html('<tr></tr>');
+    // $('table').html('<tr></tr>');
+    $('table').text('');
     if (this.currentDate.getMonth() === 11) {
       this.currentDate = new Date(this.currentDate.getFullYear() + 1, 0);
       this.generateCalendar(this.currentDate);
