@@ -28,6 +28,7 @@ window.onload = function (){
 
 	timeApp.startTime();
 	rovApp.appInitialization();
+	todoApp.appInitialization();
 
 	document.addEventListener("keydown", function onEvent(event) {
 		if (inApp["time"]){
