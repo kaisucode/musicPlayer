@@ -6,13 +6,15 @@
 	
 
 	width: 65vh;
-	height: 50vh;
+	height: 45vh;
 	/* border: 1vh solid white; */
 	text-align: center;
 }
 
 img{
-	width: 65vh;
-	height: auto;
+	width: auto;
+	height: 45vh;
+	/* width: 60vh; */
+	/* height: auto; */
 }
 
