@@ -5,7 +5,7 @@ inApp = {
 	"calendar": false
 };
 
-apps = ["timeApp", "rovApp", "todoApp", "calendarApp", "fandomApp"];
+apps = ["timeApp", "rovApp", "todoApp", "calendarApp", "fandomApp", "decorationsApp"];
 
 function stopApp(appName){
 	$("#"+appName).removeClass(appName+"Start");

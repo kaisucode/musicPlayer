@@ -1,0 +1,23 @@
+
+.decorationsApp #techStickGif{
+	position: absolute;
+	bottom: 1vh;
+	right: 0vh;
+	/* border: 1vh solid white; */
+}
+.decorationsApp #techStickGif img{
+	width: 49vh;
+	height: 37vh;
+}
+
+.decorationsApp #techSphereGif{
+	position: absolute;
+	bottom: 0vh;
+	left: 38vh;
+	/* border: 1vh solid white; */
+}
+.decorationsApp #techSphereGif img{
+	width: 32vh;
+	height: auto;
+}
+

@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="css/todoApp.css">
 		<link rel="stylesheet" type="text/css" href="css/calendarApp.css">
 		<link rel="stylesheet" type="text/css" href="css/fandomApp.css">
+		<link rel="stylesheet" type="text/css" href="css/decorationsApp.css">
 
 		<!-- Making imports available for Electron  -->
 		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
@@ -20,6 +21,25 @@
 	</head>
 
 	<body>
+
+
+		<!-- <img src="data/fandom/acotar.gif"/> -->
+		<!-- <img src="data/decorations/techCube.gif"/> -->
+		<!-- <img src="data/decorations/techCubes.gif"/> -->
+		<!-- <img src="data/decorations/techGrid.gif"/> -->
+		<!-- <img src="data/decorations/techLoading.gif"/> -->
+
+		<div id="decorationsApp" class="decorationsApp">
+			<div id="techStickGif">
+				<img src="data/decorations/techStick.gif"/>
+			</div>
+			<div id="techSphereGif">
+				<img src="data/decorations/techSphere.gif"/>
+			</div>
+		</div>
+
+
+
 		<div class="timeApp" id="timeApp">
 				
 			<div class="clockGroup">
@@ -140,11 +160,8 @@
 
 		<script src="js/fandomApp.js"></script>
 		<div id="fandomApp" class="fandomApp">
-			<div id="fandom_container">
-				
-			</div>
+			<div id="fandom_container"></div>
 		</div>
-
 
 
 	</body>
