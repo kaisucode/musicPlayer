@@ -15,7 +15,7 @@ app.on('ready', () => {
 			frame: false,
 			transparent: true
 		})
-		mainWindow.setAlwaysOnTop(true);
+		// mainWindow.setAlwaysOnTop(true);
 
 		mainWindow.loadURL(url.format({
 			pathname: path.join(__dirname, 'index.html'),

@@ -3,7 +3,6 @@
 	position: absolute;
 	bottom: 1vh;
 	right: 0vh;
-	/* border: 1vh solid white; */
 }
 .decorationsApp #techStickGif img{
 	width: 49vh;
@@ -14,10 +13,33 @@
 	position: absolute;
 	bottom: 0vh;
 	left: 38vh;
-	/* border: 1vh solid white; */
 }
 .decorationsApp #techSphereGif img{
 	width: 32vh;
 	height: auto;
 }
+
+.decorationsApp #kaisu{
+	position: absolute;
+	bottom: 50vh;
+	right: 48vh;
+	color: white;
+	font-size: 10vh;
+}
+
+.decorationsApp #shadowsinger{
+	position: absolute;
+	bottom: 45vh;
+	right: 3vh;
+	color: white;
+	font-size: 6vh;
+
+	color: black;
+	text-shadow: -0.3vh 0 white, 0 0.3vh white, 0.3vh 0 white, 0 -0.3vh white;
+}
+
+
+
+
+
 

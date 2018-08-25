@@ -32,6 +32,10 @@ window.onload = function (){
 	todoApp.appInitialization();
 	calendarApp.appInitialization();
 	fandomApp.appInitialization();
+	// var messenger = new Messenger($('#kaisu'), ["KAISU", "KEVIN"]);
+	// var messenger2 = new Messenger($('#shadowsinger'), ["SHADOWSINGER", "HSU"]);
+	var messenger = new Messenger($('#kaisu'), ["KAISU", "KAISU"]);
+	var messenger2 = new Messenger($('#shadowsinger'), ["SHADOWSINGER", "SHADOWSINGER"]);
 
 	document.addEventListener("keydown", function onEvent(event) {
 		if (inApp["time"]){
