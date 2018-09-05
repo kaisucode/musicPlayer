@@ -44,7 +44,7 @@ var timeApp  = {
 		byId('current_date').innerHTML =
 		year + "/" + month + "/" + date;
 
-		var t = setTimeout(this.startTime, 500);
+		this.timeInterval = setTimeout(timeApp.startTime, 500);
 	},
 	refreshTimeApp : function() {
 		if (this.focusPage["clock"]){
