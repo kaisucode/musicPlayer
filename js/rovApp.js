@@ -689,8 +689,6 @@ var rovApp = {
 	removeAllSelect(){
 		for (var i = this.getSelectStart(); i < this.getSelectEnd()+1; i++)
 			$(this.songOrder[i]+" div:nth-child(2)").removeClass("selectionBox");
-		this.initialSelect = 0;
-		this.lastSelect = 0;
 	},
 	/***	Select	***/
 
