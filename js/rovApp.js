@@ -186,8 +186,8 @@ var rovApp = {
 	init(){
 		this.audio = new Audio('data/mp3/'+this.nowPlaying[this.musicIndex]+".mp3");
 		this.audio.addEventListener('ended', function(){
-			this.changeMusicIndex(1);
-			this.loadNextTrack();
+			rovApp.changeMusicIndex(1);
+			rovApp.loadNextTrack();
 			return;
 		})
 
