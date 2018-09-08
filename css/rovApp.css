@@ -124,7 +124,7 @@
 }
 
 .focusedBox div:nth-child(2).loopedBox {
-	border-left: 0.8px solid rgba(184, 127, 184, 1) !important;
+	border-left: 0.8vh solid rgba(184, 127, 184, 1) !important;
 }
 
 .loopedBox {

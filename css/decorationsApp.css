@@ -2,11 +2,11 @@
 .decorationsApp #techStickGif{
 	position: absolute;
 	bottom: 1vh;
-	right: 0vh;
+	right: 1vh;
 }
 .decorationsApp #techStickGif img{
-	width: 49vh;
-	height: 37vh;
+	width: 43vh;
+	height: 33vh;
 }
 
 .decorationsApp #techSphereGif{
