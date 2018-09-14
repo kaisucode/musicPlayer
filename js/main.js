@@ -48,6 +48,9 @@ window.onload = function (){
 			calendarApp.behaviorDetermine();
 		}
 		else if (event.key === "T"){
+			todoApp.appInitialization();
+		}
+		else if (event.key === "t"){
 			inApp["time"] = true;
 			startApp("timeApp");
 			timeApp.refreshTimeApp();
