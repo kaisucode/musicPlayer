@@ -32,6 +32,7 @@ var rovApp = {
 	upperLoopLimit : 0,
 	keyDownPressed : false,
 	immediatelyAfterSelectAll : false,
+	firstTimeAfterLoop : false,
 
 	loopStyle : {
 		"default": true, 
@@ -413,6 +414,7 @@ var rovApp = {
 	},
 
 	clearAll(){
+		this.setLoop("single");
 		this.moveCursorToFirst();
 		var totalSongs = this.nowPlaying.length
 		for (var i = 0; i < totalSongs; i++)
@@ -520,6 +522,8 @@ var rovApp = {
 			this.changeMusicIndex(1);
 			$(this.songOrder[this.lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
 		}
+		else if (this.firstTimeAfterLoop)
+			this.firstTimeAfterLoop = false;
 		else
 			this.changeMusicIndex(1);
 		this.skipToNextTrack();
@@ -562,13 +566,15 @@ var rovApp = {
 		if (this.loopStyle["single"]){
 			$(this.songOrder[this.lowerLoopLimit]+" div:nth-child(2)").addClass("loopedBox");
 			this.musicIndex = this.lowerLoopLimit;
-			this.skipToNextTrack();
+			// this.skipToNextTrack();
+			this.firstTimeAfterLoop = true;
 		}
 		else if (this.loopStyle["multi"]){
 			for (var i = this.lowerLoopLimit; i < this.upperLoopLimit+1; i++)
 				$(this.songOrder[i]+" div:nth-child(2)").addClass("loopedBox");
 			this.musicIndex = this.lowerLoopLimit;
-			this.skipToNextTrack();
+			this.firstTimeAfterLoop = true;
+			// this.skipToNextTrack();
 		}
 	},
 
