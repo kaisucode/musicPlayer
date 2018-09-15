@@ -1,11 +1,11 @@
 
 inApp = {
 	"time": false,
-	"rov": false,
+	"music": false,
 	"calendar": false
 };
 
-apps = ["timeApp", "rovApp", "todoApp", "calendarApp", "fandomApp", "decorationsApp"];
+apps = ["timeApp", "musicApp", "todoApp", "calendarApp", "fandomApp", "decorationsApp"];
 
 function stopApp(appName){
 	$("#"+appName).removeClass(appName+"Start");
@@ -28,7 +28,7 @@ function startApp(appName){
 window.onload = function (){
 
 	timeApp.startTime();
-	rovApp.appInitialization();
+	musicApp.appInitialization();
 	todoApp.appInitialization();
 	calendarApp.appInitialization();
 	fandomApp.appInitialization();
@@ -41,8 +41,8 @@ window.onload = function (){
 		if (inApp["time"]){
 			timeApp.behaviorDetermine();
 		}
-		else if (inApp["rov"]){
-			rovApp.behaviorDetermine();
+		else if (inApp["music"]){
+			musicApp.behaviorDetermine();
 		}
 		else if (inApp["calendar"]){
 			calendarApp.behaviorDetermine();
@@ -56,15 +56,15 @@ window.onload = function (){
 			timeApp.refreshTimeApp();
 		}
 		else if (event.key === "m"){
-			inApp["rov"] = true;
-			startApp("rovApp");
+			inApp["music"] = true;
+			startApp("musicApp");
 		}
 		else if (event.key === "c"){
 			inApp["calendar"] = true;
 			startApp("calendarApp");
 		}
 		else
-			rovApp.outOfAppBehaviorDetermine();
+			musicApp.outOfAppBehaviorDetermine();
 
 	});
 };

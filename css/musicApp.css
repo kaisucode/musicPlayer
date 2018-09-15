@@ -16,13 +16,13 @@
 
 
 
-.rovApp .rov_inputbox{
+.musicApp .music_inputbox{
 	display: none;
 }
-.rovApp .rov_sticky{
+.musicApp .music_sticky{
 	display: none;
 }
-.rovApp .rov_scrollBox{
+.musicApp .music_scrollBox{
 	display: none;
 }
 
@@ -47,7 +47,7 @@
 	/* line-height: 2vh; */
 }
 
-.rovAppStart .rov_inputbox{
+.musicAppStart .music_inputbox{
 	background-color: black;
 	border: 0.5vh solid pink;
 	position: absolute;
@@ -57,7 +57,7 @@
 	padding: 0.7vh;
 }
 
-.rovAppStart #songInput{
+.musicAppStart #songInput{
 	border: none;
 	width: 100%;
 	font-size: 3.5vh;
@@ -65,7 +65,7 @@
 	color: white;
 }
 
-.rov_sticky {
+.music_sticky {
 	background-color: transparent;
   text-align: left;
 	font-size: 5.4vh;
@@ -75,7 +75,7 @@
 	font-family: 'Waiting for the Sunrise', cursive;
 }
 
-.rov_scrollBox{
+.music_scrollBox{
 	margin: 20px;
 	border: none;
 	border: 5px solid white;
@@ -88,15 +88,15 @@
 	background-color: black;
 }
 
-.rov_scrollBox ul{
+.music_scrollBox ul{
 	-webkit-padding-start: 0;
 	margin: 0.6vh;
 }
-.rov_scrollBox li{
+.music_scrollBox li{
 	color: white;
 }
 
-.rov_scrollBox li div:nth-child(2){
+.music_scrollBox li div:nth-child(2){
 	display: inline-block;
 	background-color: black;
 	border: 0.4vh solid #00FFF2;
@@ -169,7 +169,7 @@ canvas {
 	/* background: #00FFF2; */
 }
 
-.rov_equalizer_container{
+.music_equalizer_container{
 	position: absolute;
 	bottom: 1vh;
 	right: 0;
@@ -188,7 +188,7 @@ canvas {
 	to { left: -50%;}
 }
 
-#rov_marquee { 
+#music_marquee { 
   margin:0;
   padding:0;
   border:0;
@@ -202,7 +202,7 @@ canvas {
 	right: 7vh;
 }
 
-#rov_currentSongText {
+#music_currentSongText {
   position:absolute;
   top:0;
   left:0;
@@ -216,7 +216,7 @@ canvas {
   animation-iteration-count: infinite;
 }
 
-.rovAppStart #rov_lightline { 
+.musicAppStart #music_lightline { 
   margin:0;
   padding:0;
   border:0;
@@ -229,7 +229,7 @@ canvas {
 	bottom: 2vh;
 }
 
-.rovAppStart .rov_info {
+.musicAppStart .music_info {
 	text-align: center;
   width:100%;
   font-size:2.8vh;
@@ -245,14 +245,14 @@ canvas {
 
 /* .normalMode{background-color: rgba(184, 127, 184, 1);} */
 .normalMode{background-color: #AF88FF;}
-.normalMode .rov_info{left:0.8vh;}
+.normalMode .music_info{left:0.8vh;}
 
 .enterMode{background-color: rgba(51, 204, 51, 1);}
-.enterMode .rov_info{left:1.7vh;}
+.enterMode .music_info{left:1.7vh;}
 
 .searchMode{background-color: rgba(255, 20, 147, 1);} 
-.searchMode .rov_info{left:1vh;}
+.searchMode .music_info{left:1vh;}
 
 .selectMode{background-color: orange;} 
-.selectMode .rov_info{left:1vh;}
+.selectMode .music_info{left:1vh;}
 

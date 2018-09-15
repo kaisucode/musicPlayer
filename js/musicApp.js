@@ -3,12 +3,12 @@ var audio, audioStream, analyser, source, audioCtx, canvasCtx, frequencyData;
 var cursorOnIndex = 0;
 
 function getCursorOnSongID(){
-	return rovApp.songOrder[cursorOnIndex];
+	return musicApp.songOrder[cursorOnIndex];
 }
 
 
-canvas = document.getElementById("rov_canvas");
-var rovApp = {
+canvas = document.getElementById("music_canvas");
+var musicApp = {
 	ctx : canvas.getContext('2d'),
 
 	animation_size : 1,
@@ -132,11 +132,11 @@ var rovApp = {
 	toggleView(){
 		if (this.animation_size === 1){
 			this.animation_size = 3;
-			$(".rov_equalizer_container").css("right", "17vh");
+			$(".music_equalizer_container").css("right", "17vh");
 		}
 		else if (this.animation_size === 3){
 			this.animation_size = 1;
-			$(".rov_equalizer_container").css("right", "0vh");
+			$(".music_equalizer_container").css("right", "0vh");
 		}
 
 		canvas.width = 365*this.animation_size;
@@ -164,10 +164,10 @@ var rovApp = {
 	loadLibrary(){
 		$.getJSON( "data/library.json", function( data ) {
 			$.each( data, function( key, val ) {
-				if (rovApp.isNotPlaylist(val))
-					rovApp.library.push(val.slice(0, -4));
+				if (musicApp.isNotPlaylist(val))
+					musicApp.library.push(val.slice(0, -4));
 				else
-					rovApp.library.push(val);
+					musicApp.library.push(val);
 			});
 		});
 	},
@@ -187,14 +187,14 @@ var rovApp = {
 	init(){
 		this.audio = new Audio('data/mp3/'+this.nowPlaying[this.musicIndex]+".mp3");
 		this.audio.addEventListener('ended', function(){
-			rovApp.changeMusicIndex(1);
-			rovApp.loadNextTrack();
+			musicApp.changeMusicIndex(1);
+			musicApp.loadNextTrack();
 			return;
 		})
 
 		this.audio.play();
-		$("#rov_currentSongText").text(this.nowPlaying[this.musicIndex]);
-		$("#rov_currentSongText").css("animation-duration", (this.nowPlaying[this.musicIndex].length+5)+"s");
+		$("#music_currentSongText").text(this.nowPlaying[this.musicIndex]);
+		$("#music_currentSongText").css("animation-duration", (this.nowPlaying[this.musicIndex].length+5)+"s");
 		$(this.songOrder[this.lastPlayed]+" div:nth-child(1)").css("display", "none");
 		$(this.songOrder[this.lastPlayed]+" div:nth-child(2)").css("margin-left", "+=30");
 		this.lastPlayed = this.musicIndex;
@@ -215,10 +215,10 @@ var rovApp = {
 
 	renderFrame(){
 		analyser.getByteFrequencyData(frequencyData);		// 0~255
-		rovApp.draw();
-		rovApp.updateStarLocations(frequencyData);
+		musicApp.draw();
+		musicApp.updateStarLocations(frequencyData);
 
-		requestAnimationFrame(rovApp.renderFrame);
+		requestAnimationFrame(musicApp.renderFrame);
 	},
 
 	loadNextTrack(){
@@ -254,9 +254,9 @@ var rovApp = {
 			this.startSelectMode();
 		}
 
-		$("#rov_lightline").removeClass(this.lastMode+"Mode");
-		$("#rov_lightline").addClass(newMode+"Mode");
-		$(".rov_info").text(newMode.toUpperCase());
+		$("#music_lightline").removeClass(this.lastMode+"Mode");
+		$("#music_lightline").addClass(newMode+"Mode");
+		$(".music_info").text(newMode.toUpperCase());
 		this.lastMode = newMode;
 	},
 
@@ -318,7 +318,7 @@ var rovApp = {
 	genNewLi(songName, index){
 		if (typeof this.genNewLi.count == 'undefined')
 			this.genNewLi.count = 0;
-		var ul = document.getElementById("rov_nextUpList");
+		var ul = document.getElementById("music_nextUpList");
 		var li = document.createElement("li");
 		var arrowdiv = document.createElement("div");
 		arrowdiv.appendChild(document.createTextNode("> "));
@@ -344,9 +344,9 @@ var rovApp = {
 
 	shiftPage(sign){
 		try {
-			if (sign === 1 && this.getHeight(getCursorOnSongID()) > this.getHeight(".rov_scrollBox")+$(".rov_scrollBox").height())
+			if (sign === 1 && this.getHeight(getCursorOnSongID()) > this.getHeight(".music_scrollBox")+$(".music_scrollBox").height())
 				$(getCursorOnSongID())[0].scrollIntoView(false);
-			else if (sign === -1 && this.getHeight(getCursorOnSongID()) < this.getHeight(".rov_scrollBox"))
+			else if (sign === -1 && this.getHeight(getCursorOnSongID()) < this.getHeight(".music_scrollBox"))
 				$(getCursorOnSongID())[0].scrollIntoView(true);
 			else
 				return;
@@ -390,7 +390,7 @@ var rovApp = {
 			this.audio.pause();
 			cursorOnIndex = 0;
 			this.musicIndex = 0;
-			$("#rov_currentSongText").text("Rainbow of Velaris");
+			$("#music_currentSongText").text("Rainbow of Velaris");
 		}
 		$(getCursorOnSongID()).remove();
 
@@ -472,16 +472,16 @@ var rovApp = {
 				$.getJSON( "data/playlists/"+tempSongName, function( data ) {
 					$.each( data, function( key, val ) {
 						if (val!=""){
-							rovApp.genNewLi(val.slice(0, -4), cursorOnIndex+i);
+							musicApp.genNewLi(val.slice(0, -4), cursorOnIndex+i);
 							i++;
 						}
 					});
-					if (rovApp.afterCurrentlyPlaying() && !originally0){
-						rovApp.changeMusicIndex(i);
+					if (musicApp.afterCurrentlyPlaying() && !originally0){
+						musicApp.changeMusicIndex(i);
 						originally0 = false;
 					}
 					else if (originally0){
-						rovApp.refreshCursor();
+						musicApp.refreshCursor();
 					}
 				});
 			}
@@ -491,7 +491,7 @@ var rovApp = {
 			}
 		}
 		if (autoplay)
-			setTimeout(function() {rovApp.loadNextTrack();}, 100);
+			setTimeout(function() {musicApp.loadNextTrack();}, 100);
 		$("#songInput").val("");
 		$("#unfocus").focus();
 	},
@@ -708,17 +708,17 @@ var rovApp = {
 			return new RegExp("^" + rule.split("*").join(".*") + "$").test(str);
 		}
 		function nonCaseSensitiveFit(i){
-			return (!caseSensitiveInput && matchRuleShort(rovApp.library[i].toLowerCase(), tempSongName));
+			return (!caseSensitiveInput && matchRuleShort(musicApp.library[i].toLowerCase(), tempSongName));
 		}
 		function caseSensitiveFit(i){
-			return (caseSensitiveInput && matchRuleShort(rovApp.library[i], tempSongName));
+			return (caseSensitiveInput && matchRuleShort(musicApp.library[i], tempSongName));
 		}
 
 		var caseSensitiveInput = !(tempSongName.toLowerCase() === tempSongName);
 		var songAdditionCount = 0;
 		for (var i = 0; i < this.library.length; i++){
-			if ((nonCaseSensitiveFit(i) || caseSensitiveFit(i)) && this.isNotPlaylist(rovApp.library[i])){
-				this.genNewLi(rovApp.library[i], cursorOnIndex+songAdditionCount);
+			if ((nonCaseSensitiveFit(i) || caseSensitiveFit(i)) && this.isNotPlaylist(musicApp.library[i])){
+				this.genNewLi(musicApp.library[i], cursorOnIndex+songAdditionCount);
 				songAdditionCount++;
 			}
 		}
@@ -736,117 +736,117 @@ var rovApp = {
 		// Key lag
 		var numberKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 		if (event.key === "f" || event.key === "d"){
-			if( rovApp.keyDownPressed === true )	return false;
-			rovApp.keyDownPressed = true;
-			setTimeout(function() { rovApp.keyDownPressed = false }, 200);
+			if( musicApp.keyDownPressed === true )	return false;
+			musicApp.keyDownPressed = true;
+			setTimeout(function() { musicApp.keyDownPressed = false }, 200);
 		}
 		if (event.which === 70)		// f
-			rovApp.nextSong();
+			musicApp.nextSong();
 		else if (event.which === 68)		// d
-			rovApp.previousSong();
+			musicApp.previousSong();
 		else if (numberKeys.includes(event.key))						// 1~10
-			rovApp.skipToSection(event.key);
+			musicApp.skipToSection(event.key);
 		else if (event.which === 186 && !event.shiftKey)		// ;
-			rovApp.audio.currentTime -= 3;		// Move back
+			musicApp.audio.currentTime -= 3;		// Move back
 		else if (event.which === 186 && event.shiftKey)			// :
-			rovApp.audio.currentTime += 3;		// Move forward
+			musicApp.audio.currentTime += 3;		// Move forward
 		else if (event.which === 187 && event.shiftKey)			// +
-			rovApp.changeVolume(1);
+			musicApp.changeVolume(1);
 		else if (event.which === 189)												// -
-			rovApp.changeVolume(-1);
+			musicApp.changeVolume(-1);
 		else if (event.which === 32)	// Space
-			rovApp.togglePlayPause();
+			musicApp.togglePlayPause();
 	},
 
 	behaviorDetermine(){
 		var numberKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
-		if (rovApp.mode["enter"] || rovApp.mode["search"]){
+		if (musicApp.mode["enter"] || musicApp.mode["search"]){
 			if (event.which === 27)					// Esc
-				rovApp.setMode("normal");
+				musicApp.setMode("normal");
 
 			else if (event.which === 13){		// Enter
-				if (rovApp.mode["enter"])
-					rovApp.enterInput();
-				else if (rovApp.mode["search"])
-					rovApp.searchInput();
-				rovApp.setMode("normal");
+				if (musicApp.mode["enter"])
+					musicApp.enterInput();
+				else if (musicApp.mode["search"])
+					musicApp.searchInput();
+				musicApp.setMode("normal");
 			}
 		}
 
 		else if (event.which === 40)		// Down arrow
-			rovApp.moveCursorDown();
+			musicApp.moveCursorDown();
 		else if (event.which === 38)		// Up Arrow
-			rovApp.moveCursorUp();
-		else if(event.which === 65 && rovApp.lastKey === 77)						// ma
-			rovApp.moveCursorToCurrentlyPlaying();
+			musicApp.moveCursorUp();
+		else if(event.which === 65 && musicApp.lastKey === 77)						// ma
+			musicApp.moveCursorToCurrentlyPlaying();
 		else if (event.which === 71 && event.shiftKey)					// G
-			rovApp.moveCursorToLast();
-		else if (event.which === 71 && rovApp.lastKey === 71)					// gg
-			rovApp.moveCursorToFirst();
-		else if (event.which === 90 && rovApp.lastKey === 90)					// zz
-			rovApp.centerCursor();
+			musicApp.moveCursorToLast();
+		else if (event.which === 71 && musicApp.lastKey === 71)					// gg
+			musicApp.moveCursorToFirst();
+		else if (event.which === 90 && musicApp.lastKey === 90)					// zz
+			musicApp.centerCursor();
 
-		else if (rovApp.mode["select"]){
+		else if (musicApp.mode["select"]){
 			if (event.which === 27)						// Esc
-				rovApp.setMode("normal");
+				musicApp.setMode("normal");
 
 			else if (event.which === 76)			// l
-				rovApp.setLoop("multi");
+				musicApp.setLoop("multi");
 
 			else if (event.which === 68)			// d
-				rovApp.deleteSelectedSongs();
+				musicApp.deleteSelectedSongs();
 			else if (event.which === 88 && event.ctrlKey)		// Ctrl-x
-				rovApp.cutSelectedSongs();
+				musicApp.cutSelectedSongs();
 			else if (event.which === 89)			// yy
-				rovApp.copySelectedSongs();
+				musicApp.copySelectedSongs();
 
 			else{
-				rovApp.lastKey = event.which;
+				musicApp.lastKey = event.which;
 				return;
 			}
-			rovApp.setMode("normal");
+			musicApp.setMode("normal");
 		}
 
 		else if (event.which === 69)										// e
-			rovApp.setMode("enter");
+			musicApp.setMode("enter");
 		else if (event.which === 191)										// Forward slash
-			rovApp.setMode("search");
+			musicApp.setMode("search");
 		else if (event.which === 86 && event.shiftKey)	// V
-			rovApp.setMode("select");
+			musicApp.setMode("select");
 		else if (event.which === 76)										// l
-			rovApp.setLoop("single");
+			musicApp.setLoop("single");
 
 		else if (event.which === 86)											// v
-			rovApp.toggleView();
+			musicApp.toggleView();
 		else if (event.key === "s")	// Space/s
-			rovApp.togglePlayPause();
+			musicApp.togglePlayPause();
 
 		else if (event.which === 65 && event.ctrlKey)			// Ctrl-a
-			rovApp.selectAll();
+			musicApp.selectAll();
 		else if (event.which === 13)											// Enter
-			rovApp.playCursorOnSong();
+			musicApp.playCursorOnSong();
 		else if (event.which === 8)												// Backspace
-			rovApp.deleteCursorOnSong();
+			musicApp.deleteCursorOnSong();
 		else if (event.which === 116)												// F5
-			rovApp.clearAll();
+			musicApp.clearAll();
 		else if (event.which === 88 && event.ctrlKey)			// Ctrl-x
-			rovApp.cutCursorOnSong();
-		else if (event.which === 89 && rovApp.lastKey === 89)		// yy
-			rovApp.copyCursorOnSong();
+			musicApp.cutCursorOnSong();
+		else if (event.which === 89 && musicApp.lastKey === 89)		// yy
+			musicApp.copyCursorOnSong();
 		else if (event.which === 80)											// p
-			rovApp.pasteFromClipboard();
+			musicApp.pasteFromClipboard();
 
 		else if (event.key === "q") {		// Quit
 			if (this.animation_size === 3)
 				this.toggleView();
-			inApp["rov"] = false;
-			stopApp("rovApp");
+			inApp["music"] = false;
+			stopApp("musicApp");
 		}
 		else
-			rovApp.outOfAppBehaviorDetermine(); 
+			musicApp.outOfAppBehaviorDetermine(); 
 
-		rovApp.lastKey = event.which;
+		musicApp.lastKey = event.which;
 	}
 }
 
