@@ -1,0 +1,168 @@
+
+Can a mac host windows vm read a ntfs filesystem?
+
+music player that can loop the favorite part of your song
+research discord bot hosting
+	https://zeit.co/now
+finish steganography
+kaisusite WITH FUCKING SCSS
+
+Serene
+	fix fucked up js
+	Use DigitalOcean (Linode as backup solution) or bluehost?
+
+Persistent arch usb
+https://www.reddit.com/r/archlinux/comments/5p8au4/arch_linux_on_a_persistent_usb_a_guide_i_made_for/
+
+Linux from scratch
+Study C install libraries + Big O notation
+
+cron bluetooth jobs (check time + wifi)
+Magikarp coin flip
+Mouse button opens up transparent wheel (electron LUL) to choose what to add to clipboard
+Machine learning predict stock market + play on investopedia
+Test out poisontap
+
+Visual studio neon color scheme
+https://marketplace.visualstudio.com/items?itemName=RobbOwen.synthwave-vscode
+
+
+
+Why are mac charger transformers at the plug
+
+Quote that comes up when you open new terminal
+
+Map key that temporarily swaps spaces with underlines
+
+Learn make
+
+stats for myself; ping & uptime
+
+package html in other things
+Like the reddit thing
+
+test
+ssh -X username@#.#.#.#
+and then opening a new terminal window
+
+require inside embedded js in html file?
+
+Make website not show up in google searches
+Is stackoverflow an appropriate place to quote from as a computer science student?
+Google chrome plugin to make marks like vim
+
+Custom keyboard in all three OS
+Mouse side buttons change volume
+Japanese keyboard switch rebind
+Change brightness from terminal
+
+Try netlifly
+https://gitter.im/neovim/neovim
+vim-anywhere (use gvim to edit any text) https://github.com/cknadler/vim-anywhere
+
+Try Oni (Gui for neovim)
+vim scrollcolors
+?? Syntastic + PyLint
+Gundo (undo tree)
+
+Toss alcohol-doused throwing cards into a fire
+Increase grub font size
+
+salt bridge land with fresh+sea water
+build a rocket with a rasperry pi
+
+rainbow of velaris playing whatever it starts up in
+Ruby Wizard chess
+https://gist.github.com/rsheldiii/2993225
+
+mouse side buttons for volume control
+learn emacs
+currently_reading_bookmark_file
+vim plugin to swap two lines
+
+Pacman3d website
+
+https://github.com/ggerganov/kbd-audio
+https://stackoverflow.com/a/49086626
+https://particle.hackster.io/Imetomi/use-the-force-or-your-brainwaves-9e839b
+
+Vagrant
+Git server
+VPN on raspberry pi
+
+Vim cheatsheet
+https://vim.rtorr.com/
+
+Spacemacs cheatsheet
+https://devhints.io/spacemacs
+
+Improve on these repos
+	https://github.com/GitSquared/edex-ui
+	https://github.com/darkreader/darkreader
+	https://github.com/attaxia/MSOutlookit
+
+Interesting repos
+	Automated form submission: https://github.com/GoogleChrome/puppeteer
+	Video to ASCII: https://github.com/joelibaceta/video-to-ascii
+	WTF python: https://github.com/satwikkansal/wtfpython
+	Interview questions: https://github.com/FAQGURU/FAQGURU
+	Sandspiel: https://github.com/MaxBittker/sandspiel
+	atree: https://github.com/anvaka/atree
+
+Image steganography
+
+Discord 翻訳コンヤク bot  (Also draw ドラえもん for it)
+
+Alarm clock
+TFIOS voice interaction game
+Alfheim monster hunter
+
+AR Ghosts
+AR system for smoke navigation in buildings
+AR music note system circling people performing (Ex: 調音器)
+VR Tumblr gallery/feed
+
+VR animation ideas
+https://www.youtube.com/watch?v=FJgw5m-miWU
+
+Game from The Darkness animation
+	https://www.youtube.com/watch?v=IMukHUMcUaI
+
+
+Re-install windows
+
+Fey origin
+
+Rov
+Recalibrate the equalizer
+Fix zz
+Fix paranthesis bug
+https://stackoverflow.com/questions/38156300/regex-how-do-you-match-korean-hangul-letters-in-javascript-es6
+Change marquee
+Moving light balls
+Work in Windows (electron-forge)
+Background picture
+Tabs
+
+Save currently playing as playlist
+
+Make todo hw more dynamic
+
+fandomApp expand
+
+SCII python API
+https://www.youtube.com/watch?v=v3LJ6VvpfgI&list=PLQVvvaa0QuDcT3tPehHdisGMc8TInNqdq
+
+
+Serene About page
+Serene replace vh with px
+
+
+Resume website
+Tumblr website
+VR Avatar
+Marauder's map
+Audio fingerprinting
+
+?? Kaggle
+

@@ -419,6 +419,14 @@ var musicApp = {
 		var totalSongs = this.nowPlaying.length
 		for (var i = 0; i < totalSongs; i++)
 			this.deleteCursorOnSong();
+		this.musicIndex = 0;
+		this.lastPlayed = 0;
+		this.initialSelect = 0;
+		this.lastSelect = 0;
+		this.firstTimeAfterLoop = false;
+		this.lowerLoopLimit = 0;
+		this.upperLoopLimit = 0;
+		this.clipboard = [];
 	},
 
 	pasteFromClipboard(){
@@ -463,6 +471,11 @@ var musicApp = {
 		var tempSongName = $("#songInput").val();
 		var autoplay = (this.nowPlaying.length === 0);
 		var originally0 = this.nowPlaying.length === 0;
+
+		// $.getJSON( "data/ratings.json", function( data ) {
+		//   $.each( data, function( key, val ) {
+		//   });
+		// });
 
 		if (tempSongName.indexOf("*") != -1)
 			this.wildcardInput(tempSongName, originally0);

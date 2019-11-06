@@ -4,6 +4,11 @@
  src: url('/fonts/WaitingfortheSunrise.ttf') format('truetype');
 }
 
+/* :lang(jp) 	{ */
+/*   font-family: Latha, "Tamil MN", serif; */
+/*   font-size: 120%; */
+/* } */
+
 *{
 	background-color: black;
 	/* background-color: transparent; */
